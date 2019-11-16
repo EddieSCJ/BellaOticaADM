@@ -131,7 +131,10 @@ public class TelaCadastroClientesController implements Initializable {
 			Alerts.showAlert("CPF vazio", "Preencha o campo cpf para continuar", AlertType.INFORMATION);
 		}else if(!ConferirDados.conferirCPF(cpfDoCliente.getText())) {
 			Alerts.showAlert("CPF inválido", "Digite um CPF válido para continuar", AlertType.INFORMATION);
-		}else {
+		}else if(nascimentoTF.getText().equalsIgnoreCase(new SimpleDateFormat("dd/MM/yyyy").format(new Date()))) {
+			Alerts.showAlert("Data de Nascimento", "Selecione uma data de Nascimento", AlertType.INFORMATION);
+		}
+		else {
 			try {
 				String nome = nomeDoCliente.getText();
 				String cPF = cpfDoCliente.getText();
