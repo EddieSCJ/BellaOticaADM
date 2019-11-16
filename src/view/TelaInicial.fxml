@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="305.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="TelaInicialAnchorPane" prefHeight="305.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaInicialController">
    <children>
-      <Pane prefHeight="305.0" prefWidth="686.0" style="-fx-background-color: #e6e6e6; -fx-border-radius: ;">
+      <Pane prefHeight="305.0" prefWidth="686.0" style="-fx-background-color: #e6e6e6;">
          <children>
             <Pane fx:id="cadastrarClientes" layoutX="22.0" layoutY="26.0" onMouseClicked="#onAbrirTelaDeCadastro" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white;">
                <children>
