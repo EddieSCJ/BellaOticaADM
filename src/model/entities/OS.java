@@ -8,6 +8,7 @@ public class OS {
 
 	private Cliente cliente;
 	
+	private Integer codos;
 	private String tipoArmacao;
 	private String tipoLente;
 	private double longeODESF;
@@ -212,6 +213,12 @@ public class OS {
 	}
 	public void setPronto(boolean pronto) {
 		this.pronto = pronto;
+	}
+	public Integer getCodos() {
+		return codos;
+	}
+	public void setCodos(Integer codos) {
+		this.codos = codos;
 	}
 	
 	

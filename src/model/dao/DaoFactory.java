@@ -6,8 +6,8 @@ public class DaoFactory {
 		return new ClienteDAOJDBC();
 	}
 	
-//	public static BookDAOJDBC createBookDAOJDBC() {
-//		return new BookDAOJDBC();
-//	}
+	public static OSDAOJDBC createOSDAOJDBC() {
+		return new OSDAOJDBC();
+	}
 	
 }

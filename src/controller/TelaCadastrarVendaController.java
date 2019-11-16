@@ -3,7 +3,9 @@ package controller;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -23,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.dao.ClienteDAOJDBC;
+import model.dao.OSDAOJDBC;
 import model.entities.Cliente;
 import model.entities.OS;
 import model.utils.Alerts;
@@ -159,6 +162,9 @@ public class TelaCadastrarVendaController implements Initializable {
 	
 	ClienteDAOJDBC clienteDAOJDBC = new ClienteDAOJDBC();
 	
+
+	OSDAOJDBC osDAOJDBC = new OSDAOJDBC();
+	
 	private Stage primaryStage = new Stage();
 
 	private Scene myScene;
@@ -247,44 +253,48 @@ public class TelaCadastrarVendaController implements Initializable {
 			os.setPertoOEEIX(Double.parseDouble(pertoOEEIX.getText()));
 			os.setPertoOEESF(Double.parseDouble(pertoOEESF.getText()));
 			
+			
 			os.setPronto(pronto.isSelected());
-			os.setRestoDaVenda(Double.parseDouble(total.getText()) - Double.parseDouble(sinal.getText()));
+			os.setRestoDaVenda(Double.parseDouble(restoDaVenda.getText()));
 			os.setSinalDaVenda(Double.parseDouble(sinal.getText()));
 			os.setTipoArmacao(tipoArmacao.getText());
 			os.setTipoLente(tipoLente.getText());
 			os.setTotalDaVenda(Double.parseDouble(total.getText()));
+			
+			osDAOJDBC.save(os);
+			
+			Main.os.add(os);
+			
+			onCancel();
+			
+			Alerts.showAlert("Sucesso", "Cadastro efetuado com sucesso", AlertType.INFORMATION);
+			
 		}
 		
 	}
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		//Main.clientes = clienteDAOJDBC.findAll();
+		longeODCIL.setText("0");
+		longeODDP.setText("0");
+		longeODEIX.setText("0");
+		longeODESF.setText("0");
+		longeOECIL.setText("0");
+		longeOEDP.setText("0");
+		longeOEEIX.setText("0");
+		longeOEESF.setText("0");
 		
-		MaskFieldUtil.numericField(longeODCIL);
-		MaskFieldUtil.numericField(longeODDP);
-		MaskFieldUtil.numericField(longeODEEX);
-		MaskFieldUtil.numericField(longeODEIX);
-		MaskFieldUtil.numericField(longeODESF);
-		MaskFieldUtil.numericField(longeOECIL);
-		MaskFieldUtil.numericField(longeOEDP);
-		MaskFieldUtil.numericField(longeOEEIX);
-		MaskFieldUtil.numericField(longeOEESF);
-		
-		MaskFieldUtil.numericField(pertoODCIL);
-		MaskFieldUtil.numericField(pertoODDP);
-		MaskFieldUtil.numericField(pertoODEEX);
-		MaskFieldUtil.numericField(pertoODEIX);
-		MaskFieldUtil.numericField(pertoODESF);
-		MaskFieldUtil.numericField(pertoOECIL);
-		MaskFieldUtil.numericField(pertoOEDP);
-		MaskFieldUtil.numericField(pertoOEEIX);
-		MaskFieldUtil.numericField(pertoOEESF);
-		
-		
-		dataAtual.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-		dataEntrega.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		pertoODCIL.setText("0");;
+		pertoODDP.setText("0");;
+		pertoODEIX.setText("0");;
+		pertoODESF.setText("0");;
+		pertoOECIL.setText("0");;
+		pertoOEDP.setText("0");;
+		pertoOEEIX.setText("0");;
+		pertoOEESF.setText("0");;
 		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));		
 		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("CPF"));

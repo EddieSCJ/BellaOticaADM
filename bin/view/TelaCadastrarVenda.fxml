@@ -32,8 +32,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="tipoArmacao" layoutX="8.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo" style="-fx-background-radius: 100;" />
-      <TextField fx:id="tipoLente" layoutX="224.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo" style="-fx-background-radius: 100;" />
+      <TextField fx:id="tipoArmacao" layoutX="8.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="tipoLente" layoutX="224.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo *" style="-fx-background-radius: 100;" />
       <Label layoutX="224.0" layoutY="191.0" style="-fx-font-weight: bold;" text="Lente" textFill="#003d57">
          <font>
             <Font size="14.0" />
@@ -47,7 +47,7 @@
       <TextField fx:id="nomeVendedor" layoutX="462.0" layoutY="64.0" prefHeight="29.0" prefWidth="373.0" promptText="Nome do vendedor *" style="-fx-background-radius: 100;" />
       <TextField fx:id="total" layoutX="462.0" layoutY="106.0" prefHeight="29.0" prefWidth="165.0" promptText="Total *" style="-fx-background-radius: 100;" />
       <TextField fx:id="sinal" layoutX="461.0" layoutY="146.0" prefHeight="29.0" prefWidth="165.0" promptText="Sinal *" style="-fx-background-radius: 100;" />
-      <TextField editable="false" layoutX="461.0" layoutY="186.0" prefHeight="29.0" prefWidth="165.0" promptText="Resto" style="-fx-background-radius: 100;" />
+      <TextField fx:id="restoDaVenda" layoutX="461.0" layoutY="186.0" prefHeight="29.0" prefWidth="165.0" promptText="Resto" style="-fx-background-radius: 100;" />
       <Pane layoutX="10.0" layoutY="312.0" prefHeight="202.0" prefWidth="464.0" style="-fx-border-color: #144a9c; -fx-border-radius: 30;">
          <children>
             <Label layoutX="-15.0" layoutY="98.0" style="-fx-font-weight: bold; -fx-rotate: -90;" text="Armaçao" textFill="#003d57">
@@ -105,22 +105,22 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField layoutX="101.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="189.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="281.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="373.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="376.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="284.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="189.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="101.0" layoutY="79.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="375.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="283.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="191.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="103.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="374.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="282.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="190.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
-            <TextField layoutX="102.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="longeODESF" layoutX="101.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" promptText="Ex: 0.96" style="-fx-background-radius: 100;" />
+            <TextField fx:id="longeODCIL" layoutX="189.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" promptText="Usar" style="-fx-background-radius: 100;" />
+            <TextField fx:id="longeODEIX" layoutX="281.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" promptText="Ponto" style="-fx-background-radius: 100;" />
+            <TextField fx:id="longeODDP" layoutX="373.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" promptText="Não" style="-fx-background-radius: 100;" />
+            <TextField fx:id="longeOEDP" layoutX="376.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="longeOEEIX" layoutX="284.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="longeOECIL" layoutX="189.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="longeOEESF" layoutX="101.0" layoutY="79.0" prefHeight="29.0" prefWidth="86.0" promptText="vírgula" style="-fx-background-radius: 100;" />
+            <TextField fx:id="pertoODDP" layoutX="375.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="pertoODEIX" layoutX="283.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="pertoODCIL" layoutX="191.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="pertoODESF" layoutX="103.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="pertoOEDP" layoutX="374.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="pertoOEEIX" layoutX="282.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="pertoOECIL" layoutX="190.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField fx:id="pertoOEESF" layoutX="102.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
          </children>
       </Pane>
       <TableView fx:id="tbViewCliente" layoutX="480.0" layoutY="312.0" onMouseClicked="#onMouseClicked" prefHeight="202.0" prefWidth="373.0" style="-fx-background-radius: 0; -fx-background-color: white;">

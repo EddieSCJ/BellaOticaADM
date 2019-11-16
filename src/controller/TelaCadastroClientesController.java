@@ -90,8 +90,7 @@ public class TelaCadastroClientesController implements Initializable {
 		MaskFieldUtil.foneField(telefoneDoCliente);
 		
 		nascimentoDoCliente.setValue(LocalDate.now());
-		nascimentoTF.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-		
+	
 		Constraints.setTextFieldMaxLength(nomeDoCliente, 50);
 		Constraints.setTextFieldMaxLength(cpfDoCliente, 14);
 		Constraints.setTextFieldMaxLength(telefoneDoCliente, 15);
