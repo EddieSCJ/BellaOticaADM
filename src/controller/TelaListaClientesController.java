@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.dao.ClienteDAOJDBC;
+import model.dao.DaoFactory;
 import model.entities.Cliente;
 
 public class TelaListaClientesController implements Initializable {
@@ -39,6 +41,7 @@ public class TelaListaClientesController implements Initializable {
 	
 	private Scene myScene;
 	
+	ClienteDAOJDBC clienteDAOJDBC = DaoFactory.createClienteDaojdbc();
 	
 	public void openGUI() {
 		try {
@@ -69,6 +72,7 @@ public class TelaListaClientesController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		//Main.clientes = clienteDAOJDBC.findAll();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));		
 		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 	

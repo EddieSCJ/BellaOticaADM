@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Pane fx:id="TelaCadastrarVendaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="867.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadastrarVendaController">
+<Pane fx:id="TelaCadastroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="867.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadastrarVendaController">
    <children>
       <Label layoutX="15.0" layoutY="190.0" style="-fx-font-weight: bold;" text="Armação" textFill="#003d57">
          <font>
@@ -23,17 +23,17 @@
       </ImageView>
       <Button layoutX="8.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#onCancel" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Cancelar" textFill="WHITE" />
       <TextField editable="false" layoutY="64.0" prefHeight="5.0" prefWidth="1.0" style="-fx-opacity: 0;" />
-      <TextField editable="false" layoutX="8.0" layoutY="64.0" prefHeight="29.0" prefWidth="421.0" promptText="Nome do Cliente" style="-fx-background-radius: 100;" />
-      <TextField editable="false" layoutX="8.0" layoutY="106.0" prefHeight="29.0" prefWidth="205.0" promptText="CPF" style="-fx-background-radius: 100;" />
-      <TextField editable="false" layoutX="224.0" layoutY="106.0" prefHeight="29.0" prefWidth="205.0" promptText="Telefone" style="-fx-background-radius: 100;" />
-      <TextField editable="false" layoutX="8.0" layoutY="146.0" prefHeight="29.0" prefWidth="421.0" promptText="Endereço" style="-fx-background-radius: 100;" />
+      <TextField fx:id="nomeDoCliente" editable="false" layoutX="8.0" layoutY="64.0" prefHeight="29.0" prefWidth="421.0" promptText="Nome do Cliente *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="cpfDoCliente" editable="false" layoutX="8.0" layoutY="106.0" prefHeight="29.0" prefWidth="205.0" promptText="CPF *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="telefoneDoCliente" editable="false" layoutX="224.0" layoutY="106.0" prefHeight="29.0" prefWidth="205.0" promptText="Telefone" style="-fx-background-radius: 100;" />
+      <TextField fx:id="enderecoDoCliente" editable="false" layoutX="8.0" layoutY="146.0" prefHeight="29.0" prefWidth="421.0" promptText="Endereço" style="-fx-background-radius: 100;" />
       <Label layoutX="8.0" layoutY="37.0" style="-fx-font-weight: bold;" text="Cliente" textFill="#003d57">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="8.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo" style="-fx-background-radius: 100;" />
-      <TextField layoutX="224.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo" style="-fx-background-radius: 100;" />
+      <TextField fx:id="tipoArmacao" layoutX="8.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo" style="-fx-background-radius: 100;" />
+      <TextField fx:id="tipoLente" layoutX="224.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo" style="-fx-background-radius: 100;" />
       <Label layoutX="224.0" layoutY="191.0" style="-fx-font-weight: bold;" text="Lente" textFill="#003d57">
          <font>
             <Font size="14.0" />
@@ -44,9 +44,9 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="462.0" layoutY="64.0" prefHeight="29.0" prefWidth="373.0" promptText="Nome do vendedor" style="-fx-background-radius: 100;" />
-      <TextField layoutX="462.0" layoutY="106.0" prefHeight="29.0" prefWidth="165.0" promptText="Total" style="-fx-background-radius: 100;" />
-      <TextField layoutX="461.0" layoutY="146.0" prefHeight="29.0" prefWidth="165.0" promptText="Sinal" style="-fx-background-radius: 100;" />
+      <TextField fx:id="nomeVendedor" layoutX="462.0" layoutY="64.0" prefHeight="29.0" prefWidth="373.0" promptText="Nome do vendedor *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="total" layoutX="462.0" layoutY="106.0" prefHeight="29.0" prefWidth="165.0" promptText="Total *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="sinal" layoutX="461.0" layoutY="146.0" prefHeight="29.0" prefWidth="165.0" promptText="Sinal *" style="-fx-background-radius: 100;" />
       <TextField editable="false" layoutX="461.0" layoutY="186.0" prefHeight="29.0" prefWidth="165.0" promptText="Resto" style="-fx-background-radius: 100;" />
       <Pane layoutX="10.0" layoutY="312.0" prefHeight="202.0" prefWidth="464.0" style="-fx-border-color: #144a9c; -fx-border-radius: 30;">
          <children>
@@ -123,7 +123,7 @@
             <TextField layoutX="102.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
          </children>
       </Pane>
-      <TableView fx:id="tbViewCliente" layoutX="480.0" layoutY="312.0" prefHeight="202.0" prefWidth="373.0" style="-fx-background-radius: 0; -fx-background-color: white;">
+      <TableView fx:id="tbViewCliente" layoutX="480.0" layoutY="312.0" onMouseClicked="#onMouseClicked" prefHeight="202.0" prefWidth="373.0" style="-fx-background-radius: 0; -fx-background-color: white;">
          <columns>
             <TableColumn fx:id="nameColumn" editable="false" minWidth="0.0" prefWidth="205.0" text="Nome do Cliente" />
             <TableColumn fx:id="cpfColumn" prefWidth="167.0" text="CPF do Cliente" />
@@ -134,14 +134,24 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <DatePicker editable="false" layoutX="785.0" layoutY="106.0" prefHeight="29.0" prefWidth="31.0" />
-      <DatePicker editable="false" layoutX="785.0" layoutY="146.0" prefHeight="29.0" prefWidth="31.0" />
-      <CheckBox layoutX="649.0" layoutY="181.0" mnemonicParsing="false" text="Cartao" />
-      <CheckBox layoutX="751.0" layoutY="181.0" mnemonicParsing="false" text="Dinheiro" />
-      <CheckBox layoutX="649.0" layoutY="214.0" mnemonicParsing="false" text="Entregue" />
-      <CheckBox layoutX="751.0" layoutY="214.0" mnemonicParsing="false" text="Pronto" />
-      <TextField layoutX="639.0" layoutY="106.0" prefHeight="29.0" prefWidth="165.0" promptText="Data de entrega" style="-fx-background-radius: 100;" />
-      <TextField layoutX="639.0" layoutY="146.0" prefHeight="29.0" prefWidth="165.0" promptText="Data Aual" style="-fx-background-radius: 100;" />
-      <TextField editable="false" layoutX="480.0" layoutY="272.0" prefHeight="29.0" prefWidth="373.0" promptText="Pesquisar cliente" style="-fx-background-radius: 100;" />
+      <DatePicker fx:id="dpDataEntrega" editable="false" layoutX="785.0" layoutY="106.0" onAction="#onDataEntregaSelecionada" prefHeight="29.0" prefWidth="31.0" />
+      <DatePicker fx:id="dpDataAtual" editable="false" layoutX="785.0" layoutY="146.0" onAction="#onDataAtualSelecionada" prefHeight="29.0" prefWidth="31.0" />
+      <CheckBox fx:id="cartao" layoutX="649.0" layoutY="181.0" mnemonicParsing="false" text="Cartao" />
+      <CheckBox fx:id="dinheiro" layoutX="751.0" layoutY="181.0" mnemonicParsing="false" text="Dinheiro" />
+      <CheckBox fx:id="entregue" layoutX="649.0" layoutY="214.0" mnemonicParsing="false" text="Entregue" />
+      <CheckBox fx:id="pronto" layoutX="751.0" layoutY="214.0" mnemonicParsing="false" text="Pronto" />
+      <TextField fx:id="dataEntrega" editable="false" layoutX="639.0" layoutY="106.0" prefHeight="29.0" prefWidth="165.0" promptText="Data de entrega *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="dataAtual" editable="false" layoutX="639.0" layoutY="146.0" prefHeight="29.0" prefWidth="165.0" promptText="Data Aual *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="searchFieldTF" layoutX="480.0" layoutY="272.0" onKeyTyped="#onSearch" prefHeight="29.0" prefWidth="373.0" promptText="Pesquisar cliente" style="-fx-background-radius: 100;" />
+      <Label layoutX="224.0" layoutY="38.0" style="-fx-font-weight: bold;" text="Numero da OS:" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="327.0" layoutY="38.0" style="-fx-font-weight: bold;" text="N" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

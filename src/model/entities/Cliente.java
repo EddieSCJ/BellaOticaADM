@@ -15,6 +15,7 @@ import model.utils.Alerts;
 
 public class Cliente {
 
+	private int codCliente;
 	private String name;
 	private String CPF;
 	private Date birthDate;
@@ -24,10 +25,15 @@ public class Cliente {
 	private String bairro;
 	private String complemento;
 	private String telefone;
+	private String cidade;
+	private String estado;
 	
+	public Cliente() {
+		
+	}
 	
 	public Cliente(String name, String cPF, String birthDate, String email, String rua, String cEP, String bairro,
-			String complemento, String telefone) {
+			String complemento, String cidade, String Estado, String telefone) {
 			this.setName(name);
 			this.setBairro(bairro);
 			this.setBirthDate(birthDate);
@@ -39,6 +45,32 @@ public class Cliente {
 			this.setTelefone(telefone);
 	}
 	
+	
+	
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public int getCodCliente() {
+		return codCliente;
+	}
+
+	public void setCodCliente(int codCliente) {
+		this.codCliente = codCliente;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -117,6 +149,14 @@ public class Cliente {
 		}else {
 			this.telefone = telefone;
 		}	}
+
+	@Override
+	public String toString() {
+		return "Cliente [codCliente=" + codCliente + ", name=" + name + ", CPF=" + CPF + ", birthDate=" + birthDate
+				+ ", email=" + email + ", rua=" + rua + ", CEP=" + CEP + ", bairro=" + bairro + ", complemento="
+				+ complemento + ", telefone=" + telefone + ", cidade=" + cidade + ", estado=" + estado + "]";
+	}
+	
 	
 	
 	

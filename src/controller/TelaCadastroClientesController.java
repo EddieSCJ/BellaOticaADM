@@ -19,6 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.dao.ClienteDAOJDBC;
+import model.dao.DaoFactory;
 import model.entities.Cliente;
 import model.utils.Alerts;
 import model.utils.ConferirDados;
@@ -65,6 +67,7 @@ public class TelaCadastroClientesController implements Initializable {
 	@FXML
 	private TextField nascimentoTF;
 
+	ClienteDAOJDBC clienteDAOJDBC = DaoFactory.createClienteDaojdbc();
 	
 	private Stage primaryStage = new Stage();
 
@@ -125,9 +128,16 @@ public class TelaCadastroClientesController implements Initializable {
 	}
 
 	public void onSave(){
+		boolean achou = false;
+		for (int i = 0; i < Main.clientes.size(); i++) {
+			if(Main.clientes.get(i).getCPF().equalsIgnoreCase(cpfDoCliente.getText())) {
+				achou = true;
+			}
+		}
+		
 		if(nomeDoCliente.getText().equals(null) || nomeDoCliente.getText().equals("")) {
 			Alerts.showAlert("Nome do cliente", "Preencha o nome do cliente para continuar", AlertType.INFORMATION);
-		}else if(cpfDoCliente.getText().equals(null) || cpfDoCliente.getText().equals("")) {
+		}else if(cpfDoCliente.getText().equals(null) || cpfDoCliente.getText().equals("") || achou) {
 			Alerts.showAlert("CPF vazio", "Preencha o campo cpf para continuar", AlertType.INFORMATION);
 		}else if(!ConferirDados.conferirCPF(cpfDoCliente.getText())) {
 			Alerts.showAlert("CPF inválido", "Digite um CPF válido para continuar", AlertType.INFORMATION);
@@ -148,10 +158,11 @@ public class TelaCadastroClientesController implements Initializable {
 				String estado = estadoDoCliente.getText();
 				String complemento = complementoDoCliente.getText();
 				
-				Cliente cliente = new Cliente(nome, cPF, nascimento , email, rua, cep, bairro, complemento, telefone);
-		
+				Cliente cliente = new Cliente(nome, cPF, new SimpleDateFormat("dd/MM/yyyy").format(new Date()), email, rua, cep, bairro, complemento, cidade, estado, telefone);
+				System.out.println(cliente.toString());
+				
+				clienteDAOJDBC.save(cliente);
 				Main.clientes.add(cliente);
-				System.out.println(cliente.getName());
 				
 				onCancel();
 				
