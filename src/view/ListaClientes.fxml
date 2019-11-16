@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="702.0" style="-fx-background-color: white; -fx-background-radius: 100;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="611.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+         </image>
+      </ImageView>
+      <StackPane layoutX="1.0" layoutY="67.0" prefHeight="256.0" prefWidth="702.0" style="-fx-background-radius: 0;">
+         <children>
+            <TableView prefHeight="256.0" prefWidth="722.0" style="-fx-background-radius: 0; -fx-background-color: white;">
+              <columns>
+                <TableColumn editable="false" prefWidth="425.0" text="Nome do Cliente" />
+                <TableColumn prefWidth="276.0" text="CPF do Cliente" />
+              </columns>
+            </TableView>
+         </children>
+      </StackPane>
+      <TextField layoutX="14.0" layoutY="16.0" prefHeight="29.0" prefWidth="574.0" promptText="Digite aqui o nome do cliente para localizá-lo" style="-fx-background-radius: 100;" />
+      <TextField layoutX="-7.0" layoutY="16.0" prefHeight="29.0" prefWidth="0.0" style="-fx-opacity: 0;" />
+      <Button layoutX="14.0" layoutY="329.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Cancelar" textFill="WHITE" />
+   </children>
+</Pane>
