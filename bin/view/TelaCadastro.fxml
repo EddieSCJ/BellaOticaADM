@@ -23,7 +23,6 @@
       <TextField layoutX="470.0" layoutY="239.0" prefHeight="29.0" prefWidth="216.0" promptText="CEP" style="-fx-background-radius: 100;" />
       <Label layoutX="14.0" layoutY="168.0" style="-fx-font-weight: bold;" text="Endereço:" textFill="#003d57" />
       <TextField layoutX="243.0" layoutY="107.0" prefHeight="29.0" prefWidth="216.0" promptText="Telefone 2" style="-fx-background-radius: 100;" />
-      <TextField layoutX="470.0" layoutY="107.0" prefHeight="29.0" prefWidth="216.0" promptText="Fixo" style="-fx-background-radius: 100;" />
       <Button layoutX="547.0" layoutY="278.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d6bd1c; -fx-font-weight: bold; -fx-background-radius: 100;" text="Salvar" textFill="WHITE" />
       <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="611.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -33,5 +32,6 @@
       <Button layoutX="19.0" layoutY="278.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Cancelar" textFill="WHITE" />
       <Label layoutX="14.0" layoutY="142.0" text="Os campos marcados com * são obrigatórios" textFill="#940000" wrapText="true" />
       <TextField layoutX="-32.0" layoutY="1.0" prefHeight="5.0" prefWidth="1.0" />
+      <DatePicker layoutX="484.0" layoutY="107.0" promptText="Nasceu em:" style="-fx-background-radius: 100;" />
    </children>
 </Pane>
