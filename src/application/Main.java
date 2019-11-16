@@ -11,7 +11,7 @@ public class Main extends Application {
 		try {
 			
 			TelaInicialController tlc = new TelaInicialController();	
-			tlc.startGUI();	
+			tlc.openGUI();	
 		
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -22,7 +22,7 @@ public class TelaInicialController {
 	private Scene myScene;
 	
 	
-	public void startGUI() {
+	public void openGUI() {
 		try {
 				
 		URL mainViewerURL = this.getClass().getClassLoader().getResource("view/TelaInicial.fxml");
@@ -35,8 +35,9 @@ public class TelaInicialController {
 		
 		primaryStage.setScene(myScene);
 		
-		primaryStage.setTitle("Football game program");
-
+		primaryStage.setTitle("Bella Ótica inicial");
+		primaryStage.setResizable(false);
+		
 		primaryStage.show();
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -46,7 +47,14 @@ public class TelaInicialController {
 	
 	
 	public  void onAbrirTelaDeCadastro() {
-		System.out.println("Abrir");
+		
+		TelaCadastroClientesController tcc = new TelaCadastroClientesController();
+		tcc.openGUI();
+	
+		Stage stage = (Stage) cadastrarClientes.getScene().getWindow();
+		stage.close();
+
+		
 	}
 	
 	public  void onAbrirTelaDeVenda() {
@@ -54,7 +62,12 @@ public class TelaInicialController {
 		}
 	
 	public void onAbrirListaDeClientes() {
-		System.out.println("Abrir");
+		
+		TelaListaClientesController tlc = new TelaListaClientesController();
+		tlc.openGUI();
+	
+		Stage stage = (Stage) cadastrarClientes.getScene().getWindow();
+		stage.close();
 	}
 	
 	public  void onAbrirListaDeVendas() {
