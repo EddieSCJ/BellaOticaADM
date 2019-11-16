@@ -26,7 +26,6 @@ public class Cliente {
 	private String telefone;
 	
 	
-	
 	public Cliente(String name, String cPF, String birthDate, String email, String rua, String cEP, String bairro,
 			String complemento, String telefone) {
 			this.setName(name);

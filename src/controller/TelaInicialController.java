@@ -58,7 +58,11 @@ public class TelaInicialController {
 	}
 	
 	public  void onAbrirTelaDeVenda() {
-		System.out.println("Abrir");
+		TelaCadastrarVendaController tcv = new TelaCadastrarVendaController();
+		tcv.openGUI();
+	
+		Stage stage = (Stage) cadastrarClientes.getScene().getWindow();
+		stage.close();
 		}
 	
 	public void onAbrirListaDeClientes() {

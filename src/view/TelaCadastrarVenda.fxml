@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane fx:id="TelaCadastrarVendaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="867.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadastrarVendaController">
+   <children>
+      <Label layoutX="15.0" layoutY="190.0" style="-fx-font-weight: bold;" text="Armação" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="707.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#onSave" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d6bd1c; -fx-font-weight: bold; -fx-background-radius: 100;" text="Salvar" textFill="WHITE" />
+      <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="776.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+         </image>
+      </ImageView>
+      <Button layoutX="8.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#onCancel" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Cancelar" textFill="WHITE" />
+      <TextField editable="false" layoutY="64.0" prefHeight="5.0" prefWidth="1.0" style="-fx-opacity: 0;" />
+      <TextField editable="false" layoutX="8.0" layoutY="64.0" prefHeight="29.0" prefWidth="421.0" promptText="Nome do Cliente" style="-fx-background-radius: 100;" />
+      <TextField editable="false" layoutX="8.0" layoutY="106.0" prefHeight="29.0" prefWidth="205.0" promptText="CPF" style="-fx-background-radius: 100;" />
+      <TextField editable="false" layoutX="224.0" layoutY="106.0" prefHeight="29.0" prefWidth="205.0" promptText="Telefone" style="-fx-background-radius: 100;" />
+      <TextField editable="false" layoutX="8.0" layoutY="146.0" prefHeight="29.0" prefWidth="421.0" promptText="Endereço" style="-fx-background-radius: 100;" />
+      <Label layoutX="8.0" layoutY="37.0" style="-fx-font-weight: bold;" text="Cliente" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="8.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo" style="-fx-background-radius: 100;" />
+      <TextField layoutX="224.0" layoutY="223.0" prefHeight="29.0" prefWidth="205.0" promptText="Tipo" style="-fx-background-radius: 100;" />
+      <Label layoutX="224.0" layoutY="191.0" style="-fx-font-weight: bold;" text="Lente" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="462.0" layoutY="37.0" prefHeight="20.0" prefWidth="96.0" style="-fx-font-weight: bold;" text="Vendedor" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="462.0" layoutY="64.0" prefHeight="29.0" prefWidth="373.0" promptText="Nome do vendedor" style="-fx-background-radius: 100;" />
+      <TextField layoutX="462.0" layoutY="106.0" prefHeight="29.0" prefWidth="165.0" promptText="Total" style="-fx-background-radius: 100;" />
+      <TextField layoutX="461.0" layoutY="146.0" prefHeight="29.0" prefWidth="165.0" promptText="Sinal" style="-fx-background-radius: 100;" />
+      <TextField editable="false" layoutX="461.0" layoutY="186.0" prefHeight="29.0" prefWidth="165.0" promptText="Resto" style="-fx-background-radius: 100;" />
+      <Pane layoutX="10.0" layoutY="312.0" prefHeight="202.0" prefWidth="464.0" style="-fx-border-color: #144a9c; -fx-border-radius: 30;">
+         <children>
+            <Label layoutX="-15.0" layoutY="98.0" style="-fx-font-weight: bold; -fx-rotate: -90;" text="Armaçao" textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="142.0" style="-fx-font-weight: bold; -fx-rotate: -90;" text="PERTO" textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="163.0" style="-fx-font-weight: bold;" text="O. E" textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="127.0" style="-fx-font-weight: bold;" text="O. D." textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="62.0" style="-fx-font-weight: bold; -fx-rotate: -90;" text="LONGE" textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="83.0" style="-fx-font-weight: bold;" text="O. E" textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="40.0" style="-fx-font-weight: bold;" text="O. D." textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="144.0" layoutY="14.0" style="-fx-font-weight: bold;" text="ESF." textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="402.0" layoutY="14.0" style="-fx-font-weight: bold;" text="D. P." textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="308.0" layoutY="14.0" style="-fx-font-weight: bold;" text="EIXO" textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="222.0" layoutY="14.0" style="-fx-font-weight: bold;" text="CIL" textFill="#003d57">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="101.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="189.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="281.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="373.0" layoutY="38.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="376.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="284.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="189.0" layoutY="78.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="101.0" layoutY="79.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="375.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="283.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="191.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="103.0" layoutY="121.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="374.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="282.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="190.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+            <TextField layoutX="102.0" layoutY="163.0" prefHeight="29.0" prefWidth="86.0" style="-fx-background-radius: 100;" />
+         </children>
+      </Pane>
+      <TableView fx:id="tbViewCliente" layoutX="480.0" layoutY="312.0" prefHeight="202.0" prefWidth="373.0" style="-fx-background-radius: 0; -fx-background-color: white;">
+         <columns>
+            <TableColumn fx:id="nameColumn" editable="false" minWidth="0.0" prefWidth="205.0" text="Nome do Cliente" />
+            <TableColumn fx:id="cpfColumn" prefWidth="167.0" text="CPF do Cliente" />
+         </columns>
+      </TableView>
+      <Label layoutX="480.0" layoutY="243.0" style="-fx-font-weight: bold;" text="Selecione um cliente" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <DatePicker editable="false" layoutX="785.0" layoutY="106.0" prefHeight="29.0" prefWidth="31.0" />
+      <DatePicker editable="false" layoutX="785.0" layoutY="146.0" prefHeight="29.0" prefWidth="31.0" />
+      <CheckBox layoutX="649.0" layoutY="181.0" mnemonicParsing="false" text="Cartao" />
+      <CheckBox layoutX="751.0" layoutY="181.0" mnemonicParsing="false" text="Dinheiro" />
+      <CheckBox layoutX="649.0" layoutY="214.0" mnemonicParsing="false" text="Entregue" />
+      <CheckBox layoutX="751.0" layoutY="214.0" mnemonicParsing="false" text="Pronto" />
+      <TextField layoutX="639.0" layoutY="106.0" prefHeight="29.0" prefWidth="165.0" promptText="Data de entrega" style="-fx-background-radius: 100;" />
+      <TextField layoutX="639.0" layoutY="146.0" prefHeight="29.0" prefWidth="165.0" promptText="Data Aual" style="-fx-background-radius: 100;" />
+      <TextField editable="false" layoutX="480.0" layoutY="272.0" prefHeight="29.0" prefWidth="373.0" promptText="Pesquisar cliente" style="-fx-background-radius: 100;" />
+   </children>
+</Pane>
