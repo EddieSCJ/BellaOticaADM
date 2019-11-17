@@ -18,7 +18,7 @@
       <Button layoutX="707.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#onUpdate" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d6bd1c; -fx-font-weight: bold; -fx-background-radius: 100;" text="Atualizar Dados" textFill="WHITE" />
       <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="776.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+            <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
          </image>
       </ImageView>
       <Button layoutX="8.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#onCancel" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Sair" textFill="WHITE" />

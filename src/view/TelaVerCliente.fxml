@@ -26,7 +26,7 @@
       <Button layoutX="554.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#onAtualizar" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #00bfa3; -fx-font-weight: bold; -fx-background-radius: 100;" text="Atualizar" textFill="WHITE" />
       <ImageView fitHeight="31.0" fitWidth="193.0" layoutX="609.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+            <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
          </image>
       </ImageView>
       <Button layoutX="19.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#onSair" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Sair" textFill="WHITE" />
