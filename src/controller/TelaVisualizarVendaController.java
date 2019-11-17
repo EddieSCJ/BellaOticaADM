@@ -29,7 +29,7 @@ import model.entities.Cliente;
 import model.entities.OS;
 import model.utils.Alerts;
 
-public class TelaCadastrarVendaController implements Initializable {
+public class TelaVisualizarVendaController implements Initializable {
 
 	Cliente cliente = new Cliente();
 	
@@ -167,10 +167,9 @@ public class TelaCadastrarVendaController implements Initializable {
 
 	private Scene myScene;
 	
-	public void openGUI() {
+	public void openGUI(int id) {
 		try {
-
-			URL mainViewerURL = this.getClass().getClassLoader().getResource("view/TelaCadastrarVenda.fxml");
+			URL mainViewerURL = this.getClass().getClassLoader().getResource("view/TelaVisualizarVenda.fxml");
 
 			FXMLLoader loader = new FXMLLoader(mainViewerURL);
 
@@ -211,11 +210,11 @@ public class TelaCadastrarVendaController implements Initializable {
 	}
 	
 	
-	public void onSave() throws ParseException {
+	public void onUpdate() throws ParseException {
 		if(cpfDoCliente.getText().isEmpty() || nomeDoCliente.getText().isEmpty() || tipoArmacao.getText().isEmpty()
 			|| tipoLente.getText().isEmpty() || nomeVendedor.getText().isEmpty() || total.getText().isEmpty()
-			|| sinal.getText().isEmpty()) {
-			Alerts.showAlert("Preencha todos campos corretamente", "Selecione um cliente e preencha todos os campos com asterisco", AlertType.INFORMATION);
+			|| sinal.getText().isEmpty() || dpDataAtual.getValue() == null || dpDataEntrega.getValue() == null || dataAtual.getText().isEmpty() || dataEntrega.getText().isEmpty()) {
+			Alerts.showAlert("Preencha todos campos corretamente", "Selecione um cliente, escolha datas corretas, \n preencha todos os campos", AlertType.INFORMATION);
 		} else {
 			OS os = new OS();
 			os.setCartao(cartao.isSelected());
@@ -224,6 +223,7 @@ public class TelaCadastrarVendaController implements Initializable {
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+			
 			
 			String dataEntregaString = dpDataEntrega.getValue().toString();	
 			Date date1 = sdf1.parse(dataEntregaString);
@@ -254,18 +254,27 @@ public class TelaCadastrarVendaController implements Initializable {
 			os.setNomeVendedor(nomeVendedor.getText());
 			os.setPronto(pronto.isSelected());
 			os.setRestoDaVenda(Double.parseDouble(restoDaVenda.getText()));
-			System.out.println(os.getRestoDaVenda());
+			
 			os.setSinalDaVenda(Double.parseDouble(sinal.getText()));
 			os.setTipoArmacao(tipoArmacao.getText());
 			os.setTipoLente(tipoLente.getText());
 			os.setTotalDaVenda(Double.parseDouble(total.getText()));
 			
 			try{
-			osDAOJDBC.save(os);
+				
+			os.setCodos(TelaListarVendaController.id);
+			osDAOJDBC.update(os);
+			
+			for (int i = 0; i < Main.os.size(); i++) {
+				if(Main.os.get(i).getCodos() == os.getCodos()) {
+					Main.os.remove(i);
+				}
+			}
 			
 			Main.os.add(os);
 			
-			onCancel();
+			Stage stage = (Stage) tbViewCliente.getScene().getWindow();
+			stage.close();
 			
 			Alerts.showAlert("Sucesso", "Cadastro efetuado com sucesso", AlertType.INFORMATION);
 			}catch (Exception e) {
@@ -280,29 +289,48 @@ public class TelaCadastrarVendaController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		//Main.clientes = clienteDAOJDBC.findAll();
-		longeODCIL.setText("0");
-		longeODDP.setText("0");
-		longeODEIX.setText("0");
-		longeODESF.setText("0");
-		longeOECIL.setText("0");
-		longeOEDP.setText("0");
-		longeOEEIX.setText("0");
-		longeOEESF.setText("0");
 		
-		pertoODCIL.setText("0");;
-		pertoODDP.setText("0");;
-		pertoODEIX.setText("0");;
-		pertoODESF.setText("0");;
-		pertoOECIL.setText("0");;
-		pertoOEDP.setText("0");;
-		pertoOEEIX.setText("0");;
-		pertoOEESF.setText("0");;
-		
-		
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));		
-		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 	
-		tbViewCliente.setItems(clientList());
+		OsDAOJDBC osDAOJDBC = new OsDAOJDBC();
+
+		OS os = osDAOJDBC.findByID(TelaListarVendaController.id);
+		
+		longeODCIL.setText(Double.toString(os.getLongeODCIL()));
+		longeODDP.setText(Double.toString(os.getLongeODDP()));
+		longeODEIX.setText(Double.toString(os.getLongeODEIX()));
+		longeODESF.setText(Double.toString(os.getLongeODESF()));
+		longeOECIL.setText(Double.toString(os.getLongeOECIL()));
+		longeOEDP.setText(Double.toString(os.getLongeOEDP()));
+		longeOEEIX.setText(Double.toString(os.getLongeOEEIX()));
+		longeOEESF.setText(Double.toString(os.getLongeOEESF()));
+		
+		pertoODCIL.setText(Double.toString(os.getPertoODCIL()));
+		pertoODDP.setText(Double.toString(os.getPertoODDP()));
+		pertoODEIX.setText(Double.toString(os.getPertoODEIX()));
+		pertoODESF.setText(Double.toString(os.getPertoODESF()));
+		pertoOECIL.setText(Double.toString(os.getPertoOECIL()));
+		pertoOEDP.setText(Double.toString(os.getPertoOEDP()));
+		pertoOEEIX.setText(Double.toString(os.getPertoOEEIX()));
+		pertoOEESF.setText(Double.toString(os.getPertoOEESF()));
+		
+		cartao.setSelected(os.isCartao());
+		cliente = os.getCliente();
+		cpfDoCliente.setText(os.getCliente().getCPF());
+		dataAtual.setText(os.getDataAtual());
+		dataEntrega.setText(os.getDataEntrega());
+		dinheiro.setSelected(os.isDinheiro());
+		enderecoDoCliente.setText(os.getCliente().getCEP());
+		entregue.setSelected(os.isEntregue());
+		nomeDoCliente.setText(os.getCliente().getName());
+		nomeVendedor.setText(os.getNomeVendedor());
+		pronto.setSelected(os.isPronto());
+		restoDaVenda.setText(Double.toString(os.getRestoDaVenda()));
+		sinal.setText(Double.toString(os.getSinalDaVenda()));
+		telefoneDoCliente.setText(os.getCliente().getTelefone());
+		tipoArmacao.setText(os.getTipoArmacao());
+		tipoLente.setText(os.getTipoLente());
+		total.setText(Double.toString(os.getTotalDaVenda()));
+		
 		
 		tbViewCliente.setRowFactory( tv -> {
 		    TableRow<Cliente> row = new TableRow<>();
@@ -318,6 +346,12 @@ public class TelaCadastrarVendaController implements Initializable {
 		    });
 		    return row ;
 		});
+		
+		
+		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));		
+		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("CPF"));
+	
+		tbViewCliente.setItems(clientList());
 		
 	}
 	
@@ -346,9 +380,10 @@ public class TelaCadastrarVendaController implements Initializable {
 	}
 	
 	public void onCancel() {
-		TelaInicialController tic = new TelaInicialController();
-		tic.openGUI();
 	
+		TelaListarVendaController tlvc = new TelaListarVendaController();
+		tlvc.openGUI();
+		
 		Stage stage = (Stage) tbViewCliente.getScene().getWindow();
 		stage.close();
 	}
@@ -359,15 +394,95 @@ public class TelaCadastrarVendaController implements Initializable {
 
 	public void onMouseClicked() {
 		cliente = tbViewCliente.getSelectionModel().getSelectedItem();
-		System.out.println(cliente.getCodCliente());
 		cpfDoCliente.setText(cliente.getCPF());
 		nomeDoCliente.setText(cliente.getName());
 		if(!cliente.getRua().isEmpty() && !cliente.getRua().equalsIgnoreCase("") && !cliente.getRua().equalsIgnoreCase(null) && cliente.getRua() != null) {
 			enderecoDoCliente.setText( cliente.getRua()+", "+cliente.getBairro()+" - "+cliente.getCidade()+"/"+cliente.getEstado()+" "+cliente.getCEP());
 		}
 		if(!cliente.getTelefone().isEmpty() && !cliente.getTelefone().equalsIgnoreCase("") && !cliente.getTelefone().equalsIgnoreCase(null) && cliente.getTelefone() != null)
-			System.out.println(cliente.getTelefone());
+			
 			telefoneDoCliente.setText(cliente.getTelefone());
 		
 	}
+	
+	public void onNovaVenda() throws ParseException
+	{
+		if(cpfDoCliente.getText().isEmpty() || nomeDoCliente.getText().isEmpty() || tipoArmacao.getText().isEmpty()
+				|| tipoLente.getText().isEmpty() || nomeVendedor.getText().isEmpty() || total.getText().isEmpty()
+				|| sinal.getText().isEmpty() || dpDataAtual.getValue() == null || dpDataEntrega.getValue() == null || dataAtual.getText().isEmpty() || dataEntrega.getText().isEmpty()) {
+				Alerts.showAlert("Preencha todos campos corretamente", "Selecione um cliente, escolha datas corretas, \n preencha todos os campos", AlertType.INFORMATION);
+			}else {
+				OS os = new OS();
+				os.setCartao(cartao.isSelected());
+				os.setCliente(cliente);
+				os.setDataAtual(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+				
+				String dataEntregaString = dpDataEntrega.getValue().toString();	
+				Date date1 = sdf1.parse(dataEntregaString);
+				
+				dataEntrega.setText(sdf.format(date1));
+				
+				os.setDataEntrega(sdf.format(date1));
+				os.setDinheiro(dinheiro.isSelected());
+				os.setEntregue(entregue.isSelected());
+				os.setLongeODCIL(Double.parseDouble(longeODCIL.getText()));
+				os.setLongeODDP(Double.parseDouble(longeODDP.getText()));
+				os.setLongeODEIX(Double.parseDouble(longeODEIX.getText()));
+				os.setLongeODESF(Double.parseDouble(longeODESF.getText()));
+				os.setLongeOECIL(Double.parseDouble(longeOECIL.getText()));
+				os.setLongeOEDP(Double.parseDouble(longeOEDP.getText()));
+				os.setLongeOEEIX(Double.parseDouble(longeOEEIX.getText()));
+				os.setLongeOEESF(Double.parseDouble(longeOEESF.getText()));
+
+				os.setPertoODCIL(Double.parseDouble(pertoODCIL.getText()));
+				os.setPertoODDP(Double.parseDouble(pertoODDP.getText()));
+				os.setPertoODEIX(Double.parseDouble(pertoODEIX.getText()));
+				os.setPertoODESF(Double.parseDouble(pertoODESF.getText()));
+				os.setPertoOECIL(Double.parseDouble(pertoOECIL.getText()));
+				os.setPertoOEDP(Double.parseDouble(pertoOEDP.getText()));
+				os.setPertoOEEIX(Double.parseDouble(pertoOEEIX.getText()));
+				os.setPertoOEESF(Double.parseDouble(pertoOEESF.getText()));
+				
+				os.setNomeVendedor(nomeVendedor.getText());
+				os.setPronto(pronto.isSelected());
+				os.setRestoDaVenda(Double.parseDouble(restoDaVenda.getText()));
+				os.setSinalDaVenda(Double.parseDouble(sinal.getText()));
+				os.setTipoArmacao(tipoArmacao.getText());
+				os.setTipoLente(tipoLente.getText());
+				os.setTotalDaVenda(Double.parseDouble(total.getText()));
+			
+				try{
+				osDAOJDBC.save(os);
+	
+				
+				onCancel();
+	
+
+				Main.os = osDAOJDBC.findAll();
+				
+				Alerts.showAlert("Nova OS", "Nova ordem de serviço referente à uma \n"
+						+ "venda de mesmas especificações já obtidas", AlertType.INFORMATION);
+				}catch (Exception e) {
+					Alerts.showAlert("Deu ruim", e.getMessage(), AlertType.INFORMATION);
+				}
+			}
+			
+		
+	}
+	
+	public void onDelete() {
+		new OsDAOJDBC().delete(TelaListarVendaController.id);
+		Alerts.showAlert("OS DELETADA", "VOCÊ DELETOU UMA OS"
+				, AlertType.INFORMATION);
+		
+		for (int i = 0; i < Main.os.size(); i++) {
+			if(Main.os.get(i).getCodos() == TelaListarVendaController.id) {
+				Main.os.remove(i);
+			}
+		}
+	}
+	
 }

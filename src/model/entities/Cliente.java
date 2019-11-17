@@ -43,6 +43,8 @@ public class Cliente {
 			this.setEmail(email);
 			this.setRua(rua);
 			this.setTelefone(telefone);
+			this.setCidade(cidade);
+			this.setEstado(Estado);
 	}
 	
 	

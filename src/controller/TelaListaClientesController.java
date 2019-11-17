@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import model.dao.ClienteDAOJDBC;
 import model.dao.DaoFactory;
 import model.entities.Cliente;
+import model.entities.OS;
 
 public class TelaListaClientesController implements Initializable {
 
@@ -40,6 +42,8 @@ public class TelaListaClientesController implements Initializable {
 	private Stage primaryStage = new Stage();
 	
 	private Scene myScene;
+	
+	public static int id;
 	
 	ClienteDAOJDBC clienteDAOJDBC = DaoFactory.createClienteDaojdbc();
 	
@@ -73,6 +77,24 @@ public class TelaListaClientesController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		//Main.clientes = clienteDAOJDBC.findAll();
+		
+		tbViewCliente.setRowFactory( tv -> {
+		    TableRow<Cliente> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+		            Cliente rowData = row.getItem();
+		            TelaVerClienteController tvcc = new TelaVerClienteController();
+		            this.id = rowData.getCodCliente();
+		            
+		            Stage stage = (Stage) tbViewCliente.getScene().getWindow();
+		    		stage.close();
+//		            System.out.println(rowData.getCodos());
+		            tvcc.openGUI(rowData.getCodCliente());
+		        }
+		    });
+		    return row ;
+		});
+		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));		
 		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 	

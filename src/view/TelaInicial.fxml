@@ -12,118 +12,98 @@
    <children>
       <Pane prefHeight="305.0" prefWidth="686.0" style="-fx-background-color: #e6e6e6;">
          <children>
-            <Pane fx:id="cadastrarClientes" layoutX="22.0" layoutY="26.0" onMouseClicked="#onAbrirTelaDeCadastro" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white;">
+            <Pane fx:id="cadastrarClientes" layoutX="22.0" layoutY="26.0" onMouseClicked="#onAbrirTelaDeCadastro" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 40;">
                <children>
-                  <Label layoutX="10.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Cadastrar Clientes" textFill="#003d57">
+                  <Label layoutX="14.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Cadastrar Clientes" textFill="#003d57">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="53.0" fitWidth="63.0" layoutX="251.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="255.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Downloads/network.png" />
+                        <Image url="@../resources/insured.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="11.0" layoutY="49.0" prefHeight="25.0" prefWidth="255.0" style="-fx-font-weight: bold;" text="Área de cadastro de novos clientes" textFill="#9e9e9e">
+                  <Label layoutX="11.0" layoutY="35.0" prefHeight="25.0" prefWidth="255.0" style="-fx-font-weight: bold;" text="Área de cadastro de novos clientes" textFill="#9e9e9e">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="75.0" prefHeight="19.0" prefWidth="291.0" style="-fx-font-weight: bold;" text="Quantidade de ordens de serviço em aberto" textFill="#002866">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="35.0" fitWidth="53.0" layoutX="251.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="53.0" layoutX="112.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+                        <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="RealizarVenda" layoutX="22.0" layoutY="164.0" onMouseClicked="#onAbrirTelaDeVenda" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white;">
+            <Pane fx:id="RealizarVenda" layoutX="22.0" layoutY="164.0" onMouseClicked="#onAbrirTelaDeVenda" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 40;">
                <children>
-                  <Label layoutX="10.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Realizar Venda" textFill="#003d57">
+                  <Label layoutX="10.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Preencher OS" textFill="#003d57">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="53.0" fitWidth="63.0" layoutX="251.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="53.0" layoutX="117.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Downloads/settings.png" />
+                        <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="10.0" layoutY="75.0" prefHeight="19.0" prefWidth="291.0" style="-fx-font-weight: bold;" text="Quantidade de ordens de serviço em aberto" textFill="#002866">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="35.0" fitWidth="53.0" layoutX="243.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="10.0" layoutY="49.0" prefHeight="25.0" prefWidth="255.0" style="-fx-font-weight: bold;" text="Área de cadastro de novas vendas" textFill="#9e9e9e">
+                  <Label layoutX="10.0" layoutY="39.0" prefHeight="25.0" prefWidth="255.0" style="-fx-font-weight: bold;" text="Área de cadastro de novas vendas" textFill="#9e9e9e">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="255.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/checklist.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="ListarVenda" layoutX="354.0" layoutY="164.0" onMouseClicked="#onAbrirListaDeVendas" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white;">
+            <Pane fx:id="ListarVenda" layoutX="354.0" layoutY="164.0" onMouseClicked="#onAbrirListaDeVendas" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 40;">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Listar Venda" textFill="#003d57">
+                  <Label layoutX="14.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Listar OS" textFill="#003d57">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="53.0" fitWidth="63.0" layoutX="251.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Label layoutX="17.0" layoutY="39.0" prefHeight="25.0" prefWidth="220.0" style="-fx-font-weight: bold;" text="Ver dados das vendas efetuadas" textFill="#9e9e9e">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="53.0" layoutX="121.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Downloads/settings.png" />
+                        <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="11.0" layoutY="49.0" prefHeight="25.0" prefWidth="141.0" style="-fx-font-weight: bold;" text="OS em Aberto" textFill="#9e9e9e">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="75.0" prefHeight="19.0" prefWidth="291.0" style="-fx-font-weight: bold;" text="Quantidade de ordens de serviço em aberto" textFill="#002866">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="35.0" fitWidth="53.0" layoutX="239.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="255.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+                        <Image url="@../resources/checklist.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="ListarCliente" layoutX="354.0" layoutY="26.0" onMouseClicked="#onAbrirListaDeClientes" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white;">
+            <Pane fx:id="ListarCliente" layoutX="354.0" layoutY="26.0" onMouseClicked="#onAbrirListaDeClientes" prefHeight="116.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 40;">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Listar Clientes" textFill="#003d57">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="53.0" fitWidth="63.0" layoutX="248.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Label layoutX="15.0" layoutY="35.0" prefHeight="25.0" prefWidth="228.0" style="-fx-font-weight: bold;" text="Ver dados dos clientes cadastrados" textFill="#9e9e9e">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="53.0" layoutX="129.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Downloads/job.png" />
+                        <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="11.0" layoutY="49.0" prefHeight="25.0" prefWidth="141.0" style="-fx-font-weight: bold;" text="OS em Aberto" textFill="#9e9e9e">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="75.0" prefHeight="19.0" prefWidth="291.0" style="-fx-font-weight: bold;" text="Quantidade de ordens de serviço em aberto" textFill="#002866">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="35.0" fitWidth="53.0" layoutX="248.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="255.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+                        <Image url="@../resources/insured.png" />
                      </image>
                   </ImageView>
                </children>

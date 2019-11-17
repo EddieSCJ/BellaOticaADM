@@ -136,12 +136,14 @@ public class TelaCadastroClientesController implements Initializable {
 		
 		if(nomeDoCliente.getText().equals(null) || nomeDoCliente.getText().equals("")) {
 			Alerts.showAlert("Nome do cliente", "Preencha o nome do cliente para continuar", AlertType.INFORMATION);
-		}else if(cpfDoCliente.getText().equals(null) || cpfDoCliente.getText().equals("") || achou) {
+		}else if(cpfDoCliente.getText().equals(null) || cpfDoCliente.getText().equals("")) {
 			Alerts.showAlert("CPF vazio", "Preencha o campo cpf para continuar", AlertType.INFORMATION);
 		}else if(!ConferirDados.conferirCPF(cpfDoCliente.getText())) {
 			Alerts.showAlert("CPF inválido", "Digite um CPF válido para continuar", AlertType.INFORMATION);
 		}else if(nascimentoTF.getText().equalsIgnoreCase(new SimpleDateFormat("dd/MM/yyyy").format(new Date()))) {
 			Alerts.showAlert("Data de Nascimento", "Selecione uma data de Nascimento", AlertType.INFORMATION);
+		}else if (achou) {
+			Alerts.showAlert("CPF já cadastrado", "CPF já está cadastrado, digite um CPF válido", AlertType.INFORMATION);
 		}
 		else {
 			try {

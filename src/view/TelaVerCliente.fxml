@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Pane fx:id="TelaCadastroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="702.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadastroClientesController">
+<Pane fx:id="TelaCadastroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="702.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaVerClienteController">
    <children>
       <Label layoutX="14.0" layoutY="30.0" style="-fx-font-weight: bold;" text="Dados do cliente" textFill="#003d57">
          <font>
@@ -23,18 +23,27 @@
       <TextField fx:id="cepDoCliente" layoutX="515.0" layoutY="200.0" prefHeight="29.0" prefWidth="171.0" promptText="CEP" style="-fx-background-radius: 100;" />
       <Label layoutX="14.0" layoutY="168.0" style="-fx-font-weight: bold;" text="Endereço:" textFill="#003d57" />
       <TextField fx:id="emailDoCliente" layoutX="243.0" layoutY="107.0" prefHeight="29.0" prefWidth="216.0" promptText="Email" style="-fx-background-radius: 100;" />
-      <Button layoutX="547.0" layoutY="278.0" mnemonicParsing="false" onMouseClicked="#onSave" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d6bd1c; -fx-font-weight: bold; -fx-background-radius: 100;" text="Salvar" textFill="WHITE" />
-      <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="611.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="554.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#onAtualizar" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #00bfa3; -fx-font-weight: bold; -fx-background-radius: 100;" text="Atualizar" textFill="WHITE" />
+      <ImageView fitHeight="31.0" fitWidth="193.0" layoutX="609.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
+            <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
          </image>
       </ImageView>
-      <Button layoutX="19.0" layoutY="278.0" mnemonicParsing="false" onMouseClicked="#onCancel" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Cancelar" textFill="WHITE" />
+      <Button layoutX="19.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#onSair" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Sair" textFill="WHITE" />
       <Label layoutX="14.0" layoutY="142.0" text="Os campos marcados com * são obrigatórios" textFill="#940000" wrapText="true" />
       <TextField editable="false" layoutY="64.0" prefHeight="5.0" prefWidth="1.0" style="-fx-opacity: 0;" />
       <DatePicker fx:id="nascimentoDoCliente" editable="false" layoutX="493.0" layoutY="107.0" onAction="#onDataSelecionada" onMouseClicked="#onDataSelecionada" prefHeight="29.0" prefWidth="184.0" promptText="Nasceu em:" style="-fx-background-radius: 100; -fx-opacity: 100;" />
       <TextField fx:id="cidadeDoCliente" layoutX="278.0" layoutY="239.0" prefHeight="29.0" prefWidth="275.0" promptText="Cidade" style="-fx-background-radius: 100;" />
       <TextField fx:id="estadoDoCliente" layoutX="561.0" layoutY="239.0" prefHeight="29.0" prefWidth="124.0" promptText="Estado" style="-fx-background-radius: 100;" />
       <TextField fx:id="nascimentoTF" editable="false" layoutX="471.0" layoutY="107.0" prefHeight="29.0" prefWidth="177.0" promptText="Nasceu em:" style="-fx-background-radius: 100;" />
+      <Button layoutX="289.0" layoutY="539.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="29.0" prefWidth="155.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Excluir" textFill="WHITE" />
+      <TableView fx:id="tbviewOS" layoutY="332.0" prefHeight="193.0" prefWidth="702.0" style="-fx-background-radius: 0; -fx-background-color: white;">
+         <columns>
+            <TableColumn fx:id="nosColumn" editable="false" prefWidth="129.0" text="Número da OS" />
+            <TableColumn fx:id="vendedorColumn" minWidth="0.0" prefWidth="338.0" text="Vendedor" />
+            <TableColumn fx:id="dataColumn" prefWidth="230.0" text="Data" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchField" layoutX="14.0" layoutY="291.0" onKeyTyped="#onSearch" prefHeight="29.0" prefWidth="458.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
    </children>
 </Pane>

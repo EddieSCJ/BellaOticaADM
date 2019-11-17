@@ -1,15 +1,20 @@
 package controller;
 
 import java.net.URL;
+import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.dao.ClienteDAOJDBC;
+import model.dao.OsDAOJDBC;
 
-public class TelaInicialController {
+public class TelaInicialController implements Initializable{
 
 	@FXML
 	Pane cadastrarClientes;
@@ -75,7 +80,22 @@ public class TelaInicialController {
 	}
 	
 	public  void onAbrirListaDeVendas() {
-		System.out.println("Abrir");
+		TelaListarVendaController tlvc = new TelaListarVendaController();
+		tlvc.openGUI();
+		
+		Stage stage = (Stage) cadastrarClientes.getScene().getWindow();
+		stage.close();
+	}
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		ClienteDAOJDBC clienteDAOJDBC = new ClienteDAOJDBC();	
+		OsDAOJDBC osDAOJDBC = new OsDAOJDBC();
+
+		Main.os = osDAOJDBC.findAll();
+		Main.clientes = clienteDAOJDBC.findAll();
 	}
 	
 }

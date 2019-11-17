@@ -203,6 +203,7 @@ public class ClienteDAOJDBC implements DAO<Cliente>{
 					+ "SET telefone = ?, "
 					+ "SET estado = ?"
 					+ "SET cidade = ?"
+					+" WHERE codCliente = ?"
 					) ;
 			
 			preparedStatement.setString(1, client.getName());
@@ -216,6 +217,8 @@ public class ClienteDAOJDBC implements DAO<Cliente>{
 			preparedStatement.setString(9, client.getTelefone());
 			preparedStatement.setString(10, client.getEstado());
 			preparedStatement.setString(11, client.getCidade());
+			preparedStatement.setInt(11, client.getCodCliente());
+			
 			
 			int rowsAffected = preparedStatement.executeUpdate();
 			

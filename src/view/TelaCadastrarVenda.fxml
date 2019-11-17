@@ -18,7 +18,7 @@
       <Button layoutX="707.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#onSave" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d6bd1c; -fx-font-weight: bold; -fx-background-radius: 100;" text="Salvar" textFill="WHITE" />
       <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="776.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+            <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
          </image>
       </ImageView>
       <Button layoutX="8.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#onCancel" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Cancelar" textFill="WHITE" />
@@ -143,12 +143,17 @@
       <TextField fx:id="dataEntrega" editable="false" layoutX="639.0" layoutY="106.0" prefHeight="29.0" prefWidth="165.0" promptText="Data de entrega *" style="-fx-background-radius: 100;" />
       <TextField fx:id="dataAtual" editable="false" layoutX="639.0" layoutY="146.0" prefHeight="29.0" prefWidth="165.0" promptText="Data Aual *" style="-fx-background-radius: 100;" />
       <TextField fx:id="searchFieldTF" layoutX="480.0" layoutY="272.0" onKeyTyped="#onSearch" prefHeight="29.0" prefWidth="373.0" promptText="Pesquisar cliente" style="-fx-background-radius: 100;" />
-      <Label layoutX="224.0" layoutY="38.0" style="-fx-font-weight: bold;" text="Numero da OS:" textFill="#003d57">
+      <Label layoutX="212.0" layoutY="37.0" style="-fx-font-weight: bold;" text="Numero da OS:" textFill="#003d57">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="327.0" layoutY="38.0" style="-fx-font-weight: bold;" text="N" textFill="#003d57">
+      <Label layoutX="327.0" layoutY="37.0" style="-fx-font-weight: bold;" text="N" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="272.0" style="-fx-font-weight: bold;" text="Usar pontuação nas numerações, Ex: 10.50 ou 10.0" textFill="RED">
          <font>
             <Font size="14.0" />
          </font>

@@ -31,12 +31,13 @@ public class OS {
 	private double totalDaVenda;
 	private double sinalDaVenda;
 	private double restoDaVenda;
-	private Date dataEntrega;
-	private Date dataAtual;
+	private String dataEntrega;
+	private String dataAtual;
 	private boolean cartao;
 	private boolean dinheiro;
 	private boolean entregue;
 	private boolean pronto;
+	
 	
 	
 	
@@ -178,17 +179,18 @@ public class OS {
 	public void setRestoDaVenda(double restoDaVenda) {
 		this.restoDaVenda = restoDaVenda;
 	}
-	public Date getDataEntrega() {
+	public String getDataEntrega() {
 		return dataEntrega;
 	}
 	public void setDataEntrega(String dataEntrega) throws ParseException {
-		this.dataEntrega = new SimpleDateFormat("dd/MM/yyyy").parse(dataEntrega);
+		this.dataEntrega = dataEntrega;
 	}
-	public Date getDataAtual() {
+	public String getDataAtual() {
 		return dataAtual;
 	}
 	public void setDataAtual(String dataAtual) throws ParseException {
-		this.dataAtual = new SimpleDateFormat("dd/MM/yyyy").parse(dataAtual);
+		this.dataAtual = dataAtual;
+		
 	}
 	public boolean isCartao() {
 		return cartao;
