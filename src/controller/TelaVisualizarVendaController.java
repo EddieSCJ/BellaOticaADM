@@ -22,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import model.dao.ClienteDAOJDBC;
 import model.dao.OsDAOJDBC;
@@ -37,6 +38,21 @@ public class TelaVisualizarVendaController implements Initializable {
 	Pane TelaCadastrarVendaPane;
 
 	@FXML
+	private CheckBox visa;
+
+	@FXML
+	private CheckBox hiper;
+
+	@FXML
+	private CheckBox banese;
+
+	@FXML
+	private CheckBox elo;
+
+	@FXML
+	private CheckBox master;
+	
+	@FXML
 	private TableView<Cliente> tbViewCliente;
 	
 	@FXML
@@ -46,7 +62,10 @@ public class TelaVisualizarVendaController implements Initializable {
 	private TableColumn<Cliente, String> cpfColumn;
 	
 	@FXML 
-	private TextField searchFieldTF;
+	private TextField searchFieldNameTF;
+	
+	@FXML 
+	private TextField searchFieldCPFTF;
 	
 	@FXML 
 	private TextField nomeDoCliente;
@@ -65,6 +84,12 @@ public class TelaVisualizarVendaController implements Initializable {
 	
 	@FXML 
 	private TextField sinal;
+	
+	@FXML 
+	private TextField adicao;
+	
+	@FXML 
+	private TextField obs;
 
 	@FXML 
 	private TextField restoDaVenda;
@@ -190,6 +215,10 @@ public class TelaVisualizarVendaController implements Initializable {
 	}
 
 	public void onDataEntregaSelecionada() throws ParseException{
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -200,6 +229,10 @@ public class TelaVisualizarVendaController implements Initializable {
 	}
 	
 	public void onDataAtualSelecionada() throws ParseException{
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -211,75 +244,92 @@ public class TelaVisualizarVendaController implements Initializable {
 	
 	
 	public void onUpdate() throws ParseException {
-		if(cpfDoCliente.getText().isEmpty() || nomeDoCliente.getText().isEmpty() || tipoArmacao.getText().isEmpty()
-			|| tipoLente.getText().isEmpty() || nomeVendedor.getText().isEmpty() || total.getText().isEmpty()
-			|| sinal.getText().isEmpty() || dpDataAtual.getValue() == null || dpDataEntrega.getValue() == null || dataAtual.getText().isEmpty() || dataEntrega.getText().isEmpty()) {
-			Alerts.showAlert("Preencha todos campos corretamente", "Selecione um cliente, escolha datas corretas, \n preencha todos os campos", AlertType.INFORMATION);
-		} else {
-			OS os = new OS();
-			os.setCartao(cartao.isSelected());
-			os.setCliente(cliente);
-			os.setDataAtual(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
+		try {
+			if(cpfDoCliente.getText().isEmpty() || nomeDoCliente.getText().isEmpty() || tipoArmacao.getText().isEmpty()
+					|| tipoLente.getText().isEmpty() || nomeVendedor.getText().isEmpty() || total.getText().isEmpty()
+					|| sinal.getText().isEmpty() || dataAtual.getText().isEmpty() || dataEntrega.getText().isEmpty()) {
+					Alerts.showAlert("Preencha todos campos corretamente", "Selecione um cliente, escolha datas corretas, \n preencha todos os campos", AlertType.INFORMATION);
+				} else {
+					OS os = new OS();
+					
+					os.setAdicao(adicao.getText());
 			
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-			
-			
-			String dataEntregaString = dpDataEntrega.getValue().toString();	
-			Date date1 = sdf1.parse(dataEntregaString);
-			
-			dataEntrega.setText(sdf.format(date1));
-			
-			os.setDataEntrega(sdf.format(date1));
-			os.setDinheiro(dinheiro.isSelected());
-			os.setEntregue(entregue.isSelected());
-			os.setLongeODCIL(Double.parseDouble(longeODCIL.getText()));
-			os.setLongeODDP(Double.parseDouble(longeODDP.getText()));
-			os.setLongeODEIX(Double.parseDouble(longeODEIX.getText()));
-			os.setLongeODESF(Double.parseDouble(longeODESF.getText()));
-			os.setLongeOECIL(Double.parseDouble(longeOECIL.getText()));
-			os.setLongeOEDP(Double.parseDouble(longeOEDP.getText()));
-			os.setLongeOEEIX(Double.parseDouble(longeOEEIX.getText()));
-			os.setLongeOEESF(Double.parseDouble(longeOEESF.getText()));
+					os.setObs(obs.getText());
+					
+					os.setVisa(visa.isSelected());
+					os.setElo(elo.isSelected());
 
-			os.setPertoODCIL(Double.parseDouble(pertoODCIL.getText()));
-			os.setPertoODDP(Double.parseDouble(pertoODDP.getText()));
-			os.setPertoODEIX(Double.parseDouble(pertoODEIX.getText()));
-			os.setPertoODESF(Double.parseDouble(pertoODESF.getText()));
-			os.setPertoOECIL(Double.parseDouble(pertoOECIL.getText()));
-			os.setPertoOEDP(Double.parseDouble(pertoOEDP.getText()));
-			os.setPertoOEEIX(Double.parseDouble(pertoOEEIX.getText()));
-			os.setPertoOEESF(Double.parseDouble(pertoOEESF.getText()));
-			
-			os.setNomeVendedor(nomeVendedor.getText());
-			os.setPronto(pronto.isSelected());
-			os.setRestoDaVenda(Double.parseDouble(restoDaVenda.getText()));
-			
-			os.setSinalDaVenda(Double.parseDouble(sinal.getText()));
-			os.setTipoArmacao(tipoArmacao.getText());
-			os.setTipoLente(tipoLente.getText());
-			os.setTotalDaVenda(Double.parseDouble(total.getText()));
-			
-			try{
+					os.setHiper(hiper.isSelected());
+
+					os.setMaster(master.isSelected());
+
+					os.setBanese(banese.isSelected());			
+					os.setCliente(cliente);
 				
-			os.setCodos(TelaListarVendaController.id);
-			osDAOJDBC.update(os);
-			
-			for (int i = 0; i < Main.os.size(); i++) {
-				if(Main.os.get(i).getCodos() == os.getCodos()) {
-					Main.os.remove(i);
+					os.setDataAtual(dataAtual.getText());
+					os.setDataEntrega(dataEntrega.getText());
+					
+					os.setDinheiro(dinheiro.isSelected());
+					os.setEntregue(entregue.isSelected());
+					os.setLongeODCIL(Double.parseDouble(longeODCIL.getText()));
+					os.setLongeODDP(Double.parseDouble(longeODDP.getText()));
+					os.setLongeODEIX(Double.parseDouble(longeODEIX.getText()));
+					os.setLongeODESF(Double.parseDouble(longeODESF.getText()));
+					os.setLongeOECIL(Double.parseDouble(longeOECIL.getText()));
+					os.setLongeOEDP(Double.parseDouble(longeOEDP.getText()));
+					os.setLongeOEEIX(Double.parseDouble(longeOEEIX.getText()));
+					os.setLongeOEESF(Double.parseDouble(longeOEESF.getText()));
+
+					os.setPertoODCIL(Double.parseDouble(pertoODCIL.getText()));
+					os.setPertoODDP(Double.parseDouble(pertoODDP.getText()));
+					os.setPertoODEIX(Double.parseDouble(pertoODEIX.getText()));
+					os.setPertoODESF(Double.parseDouble(pertoODESF.getText()));
+					os.setPertoOECIL(Double.parseDouble(pertoOECIL.getText()));
+					os.setPertoOEDP(Double.parseDouble(pertoOEDP.getText()));
+					os.setPertoOEEIX(Double.parseDouble(pertoOEEIX.getText()));
+					os.setPertoOEESF(Double.parseDouble(pertoOEESF.getText()));
+					
+					os.setNomeVendedor(nomeVendedor.getText());
+					os.setPronto(pronto.isSelected());
+					os.setRestoDaVenda(Double.parseDouble(restoDaVenda.getText()));
+					
+					os.setSinalDaVenda(Double.parseDouble(sinal.getText()));
+					os.setTipoArmacao(tipoArmacao.getText());
+					os.setTipoLente(tipoLente.getText());
+					os.setTotalDaVenda(Double.parseDouble(total.getText()));
+					
+					try{
+						
+					os.setCodos(TelaListarVendaController.id);
+					osDAOJDBC.update(os);
+					
+					for (int i = 0; i < Main.os.size(); i++) {
+						if(Main.os.get(i).getCodos() == os.getCodos()) {
+							Main.os.remove(i);
+						}
+					}
+					
+					Main.os.add(os);
+					
+					this.openGUI(os.getCodos());
+					
+					Stage stage = (Stage) tbViewCliente.getScene().getWindow();
+					stage.close();
+				
+					
+				
+					
+					Alerts.showAlert("Sucesso", "OS atualizada com sucesso com sucesso", AlertType.INFORMATION);
+					}catch (Exception e) {
+						Alerts.showAlert("Deu ruim", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.INFORMATION);
+					}
 				}
-			}
-			
-			Main.os.add(os);
-			
-			Stage stage = (Stage) tbViewCliente.getScene().getWindow();
-			stage.close();
-			
-			Alerts.showAlert("Sucesso", "Cadastro efetuado com sucesso", AlertType.INFORMATION);
-			}catch (Exception e) {
-				Alerts.showAlert("Deu ruim", e.getMessage(), AlertType.INFORMATION);
-			}
+		} catch (Exception e) {
+			Alerts.showAlert("Valores errados", "Há valores errados, \n confira se você não digitou letras \n no lugar de números e vice versa", AlertType.INFORMATION);
 		}
 		
 	}
@@ -294,7 +344,7 @@ public class TelaVisualizarVendaController implements Initializable {
 		OsDAOJDBC osDAOJDBC = new OsDAOJDBC();
 
 		OS os = osDAOJDBC.findByID(TelaListarVendaController.id);
-		
+				
 		longeODCIL.setText(Double.toString(os.getLongeODCIL()));
 		longeODDP.setText(Double.toString(os.getLongeODDP()));
 		longeODEIX.setText(Double.toString(os.getLongeODEIX()));
@@ -313,7 +363,20 @@ public class TelaVisualizarVendaController implements Initializable {
 		pertoOEEIX.setText(Double.toString(os.getPertoOEEIX()));
 		pertoOEESF.setText(Double.toString(os.getPertoOEESF()));
 		
-		cartao.setSelected(os.isCartao());
+		System.out.println(os.getAdicao());
+		adicao.setText(os.getAdicao());
+		System.out.println(os.getObs());
+		obs.setText(os.getObs());
+		
+		visa.setSelected(visa.isSelected());
+		elo.setSelected(elo.isSelected());
+
+		hiper.setSelected(hiper.isSelected());
+
+		master.setSelected(master.isSelected());
+
+		banese.setSelected(banese.isSelected());
+		
 		cliente = os.getCliente();
 		cpfDoCliente.setText(os.getCliente().getCPF());
 		dataAtual.setText(os.getDataAtual());
@@ -352,7 +415,11 @@ public class TelaVisualizarVendaController implements Initializable {
 		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 	
 		tbViewCliente.setItems(clientList());
-		
+		if(tbViewCliente.getItems().isEmpty()) {
+			tbViewCliente.setEditable(false);
+		}else {
+			tbViewCliente.setEditable(true);
+		}
 	}
 	
 	public ObservableList<Cliente> clientList(){
@@ -366,7 +433,8 @@ public class TelaVisualizarVendaController implements Initializable {
 		
 	}
 	
-	public ObservableList<Cliente> specificClientList(String content){
+
+	public ObservableList<Cliente> specificClientListName(String content){
 		ObservableList<Cliente> clientList = FXCollections.observableArrayList();
 		
 			for (Cliente cliente : Main.clientes) {
@@ -379,23 +447,41 @@ public class TelaVisualizarVendaController implements Initializable {
 		
 	}
 	
-	public void onCancel() {
+	public ObservableList<Cliente> specificClientListCPF(String content){
+		ObservableList<Cliente> clientList = FXCollections.observableArrayList();
+		
+			for (Cliente cliente : Main.clientes) {
+				if(cliente.getCPF().contains(content)) {
+					clientList.add(cliente);
+				}
+			}
+
+		return clientList;
+		
+	}
 	
+	public void onCancel() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		TelaListarVendaController tlvc = new TelaListarVendaController();
 		tlvc.openGUI();
 		
 		Stage stage = (Stage) tbViewCliente.getScene().getWindow();
 		stage.close();
 	}
+
 	
-	public void onSearch() {
-		tbViewCliente.setItems(specificClientList(searchFieldTF.getText()));
-	}
 
 	public void onMouseClicked() {
 		cliente = tbViewCliente.getSelectionModel().getSelectedItem();
 		cpfDoCliente.setText(cliente.getCPF());
 		nomeDoCliente.setText(cliente.getName());
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		if(!cliente.getRua().isEmpty() && !cliente.getRua().equalsIgnoreCase("") && !cliente.getRua().equalsIgnoreCase(null) && cliente.getRua() != null) {
 			enderecoDoCliente.setText( cliente.getRua()+", "+cliente.getBairro()+" - "+cliente.getCidade()+"/"+cliente.getEstado()+" "+cliente.getCEP());
 		}
@@ -407,25 +493,34 @@ public class TelaVisualizarVendaController implements Initializable {
 	
 	public void onNovaVenda() throws ParseException
 	{
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
+		try {
 		if(cpfDoCliente.getText().isEmpty() || nomeDoCliente.getText().isEmpty() || tipoArmacao.getText().isEmpty()
 				|| tipoLente.getText().isEmpty() || nomeVendedor.getText().isEmpty() || total.getText().isEmpty()
-				|| sinal.getText().isEmpty() || dpDataAtual.getValue() == null || dpDataEntrega.getValue() == null || dataAtual.getText().isEmpty() || dataEntrega.getText().isEmpty()) {
+				|| sinal.getText().isEmpty() || dataAtual.getText().isEmpty() || dataEntrega.getText().isEmpty()) {
 				Alerts.showAlert("Preencha todos campos corretamente", "Selecione um cliente, escolha datas corretas, \n preencha todos os campos", AlertType.INFORMATION);
 			}else {
 				OS os = new OS();
-				os.setCartao(cartao.isSelected());
+				
+				os.setAdicao(adicao.getText());
+				
+				os.setObs(obs.getText());
+				
+				os.setVisa(visa.isSelected());
+				os.setElo(elo.isSelected());
+
+				os.setHiper(hiper.isSelected());
+
+				os.setMaster(master.isSelected());
+
+				os.setBanese(banese.isSelected());
 				os.setCliente(cliente);
-				os.setDataAtual(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+				os.setDataAtual(dataAtual.getText());
 				
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-				SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-				
-				String dataEntregaString = dpDataEntrega.getValue().toString();	
-				Date date1 = sdf1.parse(dataEntregaString);
-				
-				dataEntrega.setText(sdf.format(date1));
-				
-				os.setDataEntrega(sdf.format(date1));
+				os.setDataEntrega(dataEntrega.getText());
 				os.setDinheiro(dinheiro.isSelected());
 				os.setEntregue(entregue.isSelected());
 				os.setLongeODCIL(Double.parseDouble(longeODCIL.getText()));
@@ -455,34 +550,54 @@ public class TelaVisualizarVendaController implements Initializable {
 				os.setTotalDaVenda(Double.parseDouble(total.getText()));
 			
 				try{
-				osDAOJDBC.save(os);
-	
+				int codos = osDAOJDBC.save(os);
+				os.setCodos(codos);
+				Main.os.add(os);
 				
 				onCancel();
 	
-
-				Main.os = osDAOJDBC.findAll();
 				
 				Alerts.showAlert("Nova OS", "Nova ordem de serviço referente à uma \n"
 						+ "venda de mesmas especificações já obtidas", AlertType.INFORMATION);
 				}catch (Exception e) {
-					Alerts.showAlert("Deu ruim", e.getMessage(), AlertType.INFORMATION);
+					Alerts.showAlert("Deu ruim", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.INFORMATION);
 				}
 			}
+		}catch (Exception e) {
+			Alerts.showAlert("Valores errados", "Há valores errados, \n confira se você não digitou letras \n no lugar de números e vice versa", AlertType.INFORMATION);
+
+		}
 			
 		
 	}
 	
+	public void onSearchByName() {
+		tbViewCliente.setItems(specificClientListName(searchFieldNameTF.getText()));
+	}
+
+	public void onSearchByCPF() {
+		tbViewCliente.setItems(specificClientListCPF(searchFieldCPFTF.getText()));
+	}
+	
+	
 	public void onDelete() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		new OsDAOJDBC().delete(TelaListarVendaController.id);
-		Alerts.showAlert("OS DELETADA", "VOCÊ DELETOU UMA OS"
-				, AlertType.INFORMATION);
 		
 		for (int i = 0; i < Main.os.size(); i++) {
 			if(Main.os.get(i).getCodos() == TelaListarVendaController.id) {
 				Main.os.remove(i);
 			}
 		}
+		
+		onCancel();
+	
+		Alerts.showAlert("OS DELETADA", "VOCÊ DELETOU UMA OS"
+				, AlertType.INFORMATION);
+		
 	}
 	
 }

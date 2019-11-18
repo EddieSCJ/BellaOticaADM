@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Pane fx:id="TelaListaClientesPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="702.0" style="-fx-background-color: white; -fx-background-radius: 100;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaListarVendaController">
+<Pane fx:id="TelaListaClientesPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="840.0" style="-fx-background-color: white; -fx-background-radius: 100;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaListarVendaController">
    <children>
-      <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="611.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="46.0" fitWidth="77.0" layoutX="749.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+            <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
          </image>
       </ImageView>
-      <StackPane layoutX="1.0" layoutY="67.0" prefHeight="256.0" prefWidth="702.0" style="-fx-background-radius: 0;">
+      <StackPane layoutY="93.0" prefHeight="256.0" prefWidth="840.0" style="-fx-background-radius: 0;">
          <children>
             <TableView fx:id="tbviewOS" prefHeight="256.0" prefWidth="722.0" style="-fx-background-radius: 0; -fx-background-color: white;">
                <columns>
-                  <TableColumn fx:id="nosColumn" editable="false" prefWidth="129.0" text="Número da OS" />
-                  <TableColumn fx:id="vendedorColumn" minWidth="0.0" prefWidth="259.0" text="Vendedor" />
-                  <TableColumn fx:id="dataColumn" prefWidth="265.0" text="Data" />
+                  <TableColumn fx:id="nosColumn" editable="false" prefWidth="95.0" text="Número da OS" />
+                  <TableColumn fx:id="dataColumn" minWidth="8.0" prefWidth="146.0" text="Data" />
+                  <TableColumn fx:id="vendedorColumn" minWidth="0.0" prefWidth="200.0" text="Vendedor" />
+                  <TableColumn fx:id="clienteColumn" prefWidth="215.0" text="Cliente" />
+                  <TableColumn fx:id="cpfColumn" prefWidth="180.0" text="CPF" />
                </columns>
             </TableView>
          </children>
       </StackPane>
-      <TextField fx:id="searchField" layoutX="14.0" layoutY="16.0" onKeyTyped="#onSearch" prefHeight="29.0" prefWidth="574.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
+      <TextField fx:id="dataSearch" layoutX="101.0" layoutY="64.0" onKeyTyped="#onSearchData" prefHeight="29.0" prefWidth="132.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
       <TextField layoutX="-7.0" layoutY="16.0" prefHeight="29.0" prefWidth="0.0" style="-fx-opacity: 0;" />
-      <Button fx:id="cancelButton" layoutX="14.0" layoutY="329.0" mnemonicParsing="false" onAction="#onCancel" onMouseClicked="#onCancel" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Cancelar" textFill="WHITE" />
+      <Button fx:id="cancelButton" layoutX="9.0" layoutY="368.0" mnemonicParsing="false" onAction="#onCancel" onMouseClicked="#onCancel" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Cancelar" textFill="WHITE" />
+      <Label layoutX="101.0" layoutY="36.0" style="-fx-font-weight: bold;" text="Data da OS" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="261.0" layoutY="36.0" style="-fx-font-weight: bold;" text="Vendedor" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="vendedorSearch" layoutX="251.0" layoutY="62.0" onKeyTyped="#onSearchVendedor" prefHeight="29.0" prefWidth="184.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
+      <Label layoutX="452.0" layoutY="36.0" style="-fx-font-weight: bold;" text="Cliente" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="clienteSearch" layoutX="446.0" layoutY="61.0" onKeyTyped="#onSearchCliente" prefHeight="29.0" prefWidth="199.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
+      <Label layoutX="661.0" layoutY="36.0" style="-fx-font-weight: bold;" text="CPF" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cpfSearch" layoutX="661.0" layoutY="62.0" onKeyTyped="#onSearchCPF" prefHeight="29.0" prefWidth="176.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
+      <Label layoutX="14.0" layoutY="37.0" style="-fx-font-weight: bold;" text="N° OS" textFill="#003d57">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nosSearch" layoutX="9.0" layoutY="61.0" onKeyTyped="#onSearchNOS" prefHeight="29.0" prefWidth="77.0" promptText="N° OS" style="-fx-background-radius: 100;" />
    </children>
 </Pane>

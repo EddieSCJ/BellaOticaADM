@@ -33,19 +33,57 @@ public class OS {
 	private double restoDaVenda;
 	private String dataEntrega;
 	private String dataAtual;
-	private boolean cartao;
+	private boolean visa;
+	private boolean master;
+	private boolean elo;
+	private boolean hiper;
+	private boolean banese;
 	private boolean dinheiro;
 	private boolean entregue;
 	private boolean pronto;
+	private String obs;
+	private String adicao;
+	private String nomeCliente;
+	private String cpfCliente;
+	
+
 	
 	
+	public String getCpfCliente() {
+		return cpfCliente;
+	}
+	public void setCpfCliente(String cpfCliente) {
+		this.cpfCliente = cpfCliente;
+	}
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+	public String getObs() {
+		return obs;
+	}
+	public void setObs(String obs) {
+		this.obs = obs;
+	}
 	
+	public String getAdicao() {
+		return adicao;
+	}
+	
+	public void setAdicao(String adicao) {
+		this.adicao = adicao;
+	}
 	
 	public Cliente getCliente() {
 		return cliente;
 	}
+	
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+		this.setNomeCliente(cliente.getName());
+		this.setCpfCliente(cliente.getCPF());
 	}
 	public String getTipoArmacao() {
 		return tipoArmacao;
@@ -192,15 +230,48 @@ public class OS {
 		this.dataAtual = dataAtual;
 		
 	}
-	public boolean isCartao() {
-		return cartao;
+	public boolean isVisa() {
+		return visa;
 	}
-	public void setCartao(boolean cartao) {
-		this.cartao = cartao;
+	public void setVisa(boolean visa) {
+		this.visa = visa;
 	}
+	
+	public boolean isMaster() {
+		return master;
+	}
+	public void setMaster(boolean master) {
+		this.master = master;
+	}
+	
+	public boolean isElo() {
+		return elo;
+	}
+	public void setElo(boolean elo) {
+		this.elo = elo;
+	}
+	
+	public boolean isHiper() {
+		return hiper;
+	}
+	public void setHiper(boolean hiper) {
+		this.hiper =  hiper;
+	}
+	
+	public boolean isBanese() {
+		return banese;
+	}
+	public void setBanese(boolean banese) {
+		this.banese =  banese;
+	}
+	
+	
+	
 	public boolean isDinheiro() {
 		return dinheiro;
 	}
+	
+	
 	public void setDinheiro(boolean dinheiro) {
 		this.dinheiro = dinheiro;
 	}

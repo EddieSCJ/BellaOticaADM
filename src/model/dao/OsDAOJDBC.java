@@ -39,8 +39,12 @@ public class OsDAOJDBC implements DAO<OS>{
 			while (rs.next()) {
 				OS obj = new OS();
 				obj.setCodos(rs.getInt("codos"));
-				obj.setCartao(rs.getBoolean("cartao"));
-		
+				obj.setVisa(rs.getBoolean("visa"));
+				obj.setElo(rs.getBoolean("elo"));
+				obj.setHiper(rs.getBoolean("hiper"));
+				obj.setMaster(rs.getBoolean("master"));
+				obj.setBanese(rs.getBoolean("banese"));
+				
 				obj.setDataAtual(rs.getString("dataAtual"));
 				obj.setDataEntrega(rs.getString("dataEntrega"));
 				obj.setDinheiro(rs.getBoolean("dinheiro"));
@@ -70,6 +74,8 @@ public class OsDAOJDBC implements DAO<OS>{
 				obj.setTipoLente(rs.getString("tipolente"));
 				obj.setTotalDaVenda(rs.getDouble("totaldavenda"));
 				obj.setNomeVendedor(rs.getString("nomeVendedor"));
+				obj.setAdicao(rs.getString("adicao"));
+				obj.setObs(rs.getString("obs"));
 				
 				int n = rs.getInt("codCliente");
 				
@@ -104,8 +110,8 @@ public class OsDAOJDBC implements DAO<OS>{
 			return list;
 		}
 		catch (Exception e) {
-			Alerts.showAlert("Not found", e.getMessage(), AlertType.ERROR);
-			}
+			Alerts.showAlert("Ocorreu um erro inesperado", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.ERROR);
+						}
 		return list;
 	}
 	
@@ -134,7 +140,11 @@ public class OsDAOJDBC implements DAO<OS>{
 			obj = new OS();
 			
 			obj.setCodos(rs.getInt("codos"));
-			obj.setCartao(rs.getBoolean("cartao"));
+			obj.setVisa(rs.getBoolean("visa"));
+			obj.setElo(rs.getBoolean("elo"));
+			obj.setHiper(rs.getBoolean("hiper"));
+			obj.setMaster(rs.getBoolean("master"));
+			obj.setBanese(rs.getBoolean("banese"));
 	
 			System.out.println("A");
 			
@@ -166,11 +176,13 @@ public class OsDAOJDBC implements DAO<OS>{
 			obj.setTipoLente(rs.getString("tipolente"));
 			obj.setTotalDaVenda(rs.getDouble("totaldavenda"));
 			obj.setNomeVendedor(rs.getString("nomeVendedor"));
+			obj.setAdicao(rs.getString("adicao"));
+			obj.setObs(rs.getString("obs"));
 			
 			int n = rs.getInt("codCliente");
 			
 			st = conn.prepareStatement(
-					"SELECT * FROM cliente where codCliente = ? ORDER BY codCliente");
+					"SELECT * FROM cliente where codCliente = ?");
 				
 			st.setInt(1, n);
 			
@@ -196,8 +208,8 @@ public class OsDAOJDBC implements DAO<OS>{
 			obj.setCliente(cliente);
 		}
 			catch(Exception e) {
-				Alerts.showAlert("Not found", e.getMessage(), AlertType.ERROR);
-			}
+				Alerts.showAlert("Ocorreu um erro inesperado", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.ERROR);
+							}
 		finally {
 		return obj;
 		}
@@ -225,7 +237,11 @@ public class OsDAOJDBC implements DAO<OS>{
 			while (rs.next()) {
 				OS obj = new OS();
 				obj.setCodos(rs.getInt("codos"));
-				obj.setCartao(rs.getBoolean("cartao"));
+				obj.setVisa(rs.getBoolean("visa"));
+				obj.setElo(rs.getBoolean("elo"));
+				obj.setHiper(rs.getBoolean("hiper"));
+				obj.setMaster(rs.getBoolean("master"));
+				obj.setBanese(rs.getBoolean("banese"));
 		
 				obj.setDataAtual(rs.getString("dataAtual"));
 				obj.setDataEntrega(rs.getString("dataEntrega"));
@@ -256,6 +272,8 @@ public class OsDAOJDBC implements DAO<OS>{
 				obj.setTipoLente(rs.getString("tipolente"));
 				obj.setTotalDaVenda(rs.getDouble("totaldavenda"));
 				obj.setNomeVendedor(rs.getString("nomeVendedor"));
+				obj.setAdicao(rs.getString("adicao"));
+				obj.setObs(rs.getString("obs"));
 				
 				int n = rs.getInt("codCliente");
 				
@@ -290,8 +308,8 @@ public class OsDAOJDBC implements DAO<OS>{
 			return list;
 		}
 		catch (Exception e) {
-			Alerts.showAlert("Not found", e.getMessage(), AlertType.ERROR);
-			}
+			Alerts.showAlert("Ocorreu um erro inesperado", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.ERROR);
+						}
 		
 		return list;
 	}
@@ -315,8 +333,8 @@ public class OsDAOJDBC implements DAO<OS>{
 			Alerts.showAlert("Deleting OS", "Numero de linhas afetadas: "+rowsAffected, AlertType.INFORMATION);
 		
 		} catch(Exception e) {
-			Alerts.showAlert("Error in delete data", e.getMessage(), AlertType.ERROR);
-		}
+			Alerts.showAlert("Ocorreu um erro inesperado", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.ERROR);
+					}
 		
 	}
 
@@ -330,7 +348,7 @@ public class OsDAOJDBC implements DAO<OS>{
 			conn = DB.getConnection();
 			
 			preparedStatement = conn.prepareStatement("UPDATE OS "
-					+ "SET cartao = ?, "
+					+ "SET visa = ?, "
 					+ " DataAtual = ?, "
 					+ " DataEntrega = ?, "
 					+ " Dinheiro = ?, "
@@ -359,12 +377,18 @@ public class OsDAOJDBC implements DAO<OS>{
 					+ " TipoArmacao = ?, "
 					+ " TipoLente = ?, "
 					+ " TotalDaVenda = ?, "
-					+ " nomeVendedor = ?"
-					+ "WHERE codos = ?"
+					+ " nomeVendedor = ?,"
+					+ " hiper = ?,"
+					+ " master = ?,"
+					+ " elo = ?,"
+					+ " banese = ?,"
+					+ " adicao = ?,"
+					+ " obs = ?"
+					+ " WHERE codos = ?"
 					) ;
 			
 			
-			preparedStatement.setBoolean(1, OS.isCartao());
+			preparedStatement.setBoolean(1, OS.isVisa());
 	
 			preparedStatement.setString(2, OS.getDataAtual());
 			preparedStatement.setString(3, OS.getDataEntrega());
@@ -395,7 +419,13 @@ public class OsDAOJDBC implements DAO<OS>{
 			preparedStatement.setString(26, OS.getTipoLente());
 			preparedStatement.setDouble(27, OS.getTotalDaVenda());
 			preparedStatement.setString(28, OS.getNomeVendedor());
-			preparedStatement.setInt(29, OS.getCodos());
+			preparedStatement.setBoolean(29, OS.isHiper());
+			preparedStatement.setBoolean(30, OS.isMaster());
+			preparedStatement.setBoolean(31, OS.isElo());
+			preparedStatement.setBoolean(32, OS.isBanese());
+			preparedStatement.setString(33, OS.getAdicao());
+			preparedStatement.setString(34, OS.getObs());
+			preparedStatement.setInt(35, OS.getCodos());
 			
 			int rowsAffected = preparedStatement.executeUpdate();
 			
@@ -406,8 +436,8 @@ public class OsDAOJDBC implements DAO<OS>{
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			Alerts.showAlert("Error in UPDATE data", e.getMessage(), AlertType.ERROR);
-		}
+			Alerts.showAlert("Ocorreu um erro inesperado", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.ERROR);
+					}
 	}
 
 	@Override
@@ -421,15 +451,16 @@ public class OsDAOJDBC implements DAO<OS>{
 			conn = DB.getConnection();
 			if(OS.getCliente().getCodCliente() != 0) {
 			preparedStatement = conn.prepareStatement("INSERT INTO OS"
-					+ "(cartao, DataAtual,DataEntrega,Dinheiro,Entregue,LongeODCIL,LongeODDP,LongeODEIX,"
+					+ "(visa, DataAtual,DataEntrega,Dinheiro,Entregue,LongeODCIL,LongeODDP,LongeODEIX,"
 					+ "LongeODESF,LongeOECIL,LongeOEDP, LongeOEEIX,LongeOEESF,PertoODCIL,PertoODDP,PertoODEIX, "
 					+ "PertoODESF,PertoOECIL,PertoOEDP,PertoOEEIX,	PertoOEESF,Pronto,RestoDaVenda,"
-					+ "SinalDaVenda,TipoArmacao,TipoLente, TotalDaVenda, codCliente, nomeVendedor)"
+					+ "SinalDaVenda,TipoArmacao,TipoLente, TotalDaVenda, codCliente, nomeVendedor, hiper, master, elo"
+					+ ", banese, adicao, obs)"
 					+ "VALUES"
-					+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?)", Statement.RETURN_GENERATED_KEYS
+					+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS
 					) ;
 			
-			preparedStatement.setBoolean(1, OS.isCartao());
+			preparedStatement.setBoolean(1, OS.isVisa());
 			
 			preparedStatement.setString(2, OS.getDataAtual());
 			preparedStatement.setString(3, OS.getDataEntrega());
@@ -461,19 +492,26 @@ public class OsDAOJDBC implements DAO<OS>{
 			preparedStatement.setDouble(27, OS.getTotalDaVenda());
 			preparedStatement.setDouble(28, OS.getCliente().getCodCliente());
 			preparedStatement.setString(29, OS.getNomeVendedor());
+			preparedStatement.setBoolean(30, OS.isHiper());
+			preparedStatement.setBoolean(31, OS.isMaster());
+			preparedStatement.setBoolean(32, OS.isElo());
+			preparedStatement.setBoolean(33, OS.isBanese());
+			preparedStatement.setString(34, OS.getAdicao());
+			preparedStatement.setString(35, OS.getObs());
+			
 			
 			
 			}else {
 				preparedStatement = conn.prepareStatement("INSERT INTO OS"
-						+ "(cartao, DataAtual,DataEntrega,Dinheiro,Entregue,LongeODCIL,LongeODDP,LongeODEIX,"
+						+ "(visa, DataAtual,DataEntrega,Dinheiro,Entregue,LongeODCIL,LongeODDP,LongeODEIX,"
 						+ "LongeODESF,LongeOECIL,LongeOEDP, LongeOEEIX,LongeOEESF,PertoODCIL,PertoODDP,PertoODEIX, "
 						+ "PertoODESF,PertoOECIL,PertoOEDP,PertoOEEIX,PertoOEESF,Pronto,restodavenda,"
-						+ "SinalDaVenda,TipoArmacao,TipoLente, TotalDaVenda)"
+						+ "SinalDaVenda,TipoArmacao,TipoLente, TotalDaVenda, hiper, master, elo, banese)"
 						+ "VALUES"
-						+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS
+						+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS
 						) ;
 				
-				preparedStatement.setBoolean(1, OS.isCartao());
+				preparedStatement.setBoolean(1, OS.isVisa());
 				
 				preparedStatement.setString(2, OS.getDataAtual());
 				preparedStatement.setString(3, OS.getDataEntrega());
@@ -504,6 +542,13 @@ public class OsDAOJDBC implements DAO<OS>{
 				preparedStatement.setString(26, OS.getTipoLente());
 				preparedStatement.setDouble(27, OS.getTotalDaVenda());
 				preparedStatement.setString(28, OS.getNomeVendedor());
+				preparedStatement.setBoolean(29, OS.isHiper());
+				preparedStatement.setBoolean(30, OS.isMaster());
+				preparedStatement.setBoolean(31, OS.isElo());
+				preparedStatement.setBoolean(32, OS.isBanese());
+				preparedStatement.setString(33, OS.getAdicao());
+				preparedStatement.setString(34, OS.getObs());
+				
 				
 					
 			}
@@ -522,8 +567,8 @@ public class OsDAOJDBC implements DAO<OS>{
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
-			Alerts.showAlert("Error in write data", e.getMessage(), AlertType.ERROR);
-		}
+			Alerts.showAlert("Ocorreu um erro inesperado", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.ERROR);
+					}
 		return -1111;
 		}
 		

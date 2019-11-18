@@ -18,6 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import model.dao.ClienteDAOJDBC;
 import model.dao.DaoFactory;
@@ -127,6 +128,11 @@ public class TelaCadastroClientesController implements Initializable {
 	}
 
 	public void onSave(){
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
+		try {
 		boolean achou = false;
 		for (int i = 0; i < Main.clientes.size(); i++) {
 			if(Main.clientes.get(i).getCPF().equalsIgnoreCase(cpfDoCliente.getText())) {
@@ -141,7 +147,7 @@ public class TelaCadastroClientesController implements Initializable {
 		}else if(!ConferirDados.conferirCPF(cpfDoCliente.getText())) {
 			Alerts.showAlert("CPF inválido", "Digite um CPF válido para continuar", AlertType.INFORMATION);
 		}else if(nascimentoTF.getText().equalsIgnoreCase(new SimpleDateFormat("dd/MM/yyyy").format(new Date()))) {
-			Alerts.showAlert("Data de Nascimento", "Selecione uma data de Nascimento", AlertType.INFORMATION);
+			Alerts.showAlert("Data de Nascimento", "Selecione uma data de Nascimento \n válida, afinal, ele não nasceu hoje, \n mas pode ter nascido ontem", AlertType.INFORMATION);
 		}else if (achou) {
 			Alerts.showAlert("CPF já cadastrado", "CPF já está cadastrado, digite um CPF válido", AlertType.INFORMATION);
 		}
@@ -159,10 +165,14 @@ public class TelaCadastroClientesController implements Initializable {
 				String estado = estadoDoCliente.getText();
 				String complemento = complementoDoCliente.getText();
 				
-				Cliente cliente = new Cliente(nome, cPF, new SimpleDateFormat("dd/MM/yyyy").format(new Date()), email, rua, cep, bairro, complemento, cidade, estado, telefone);
+				Cliente cliente = new Cliente(nome, cPF, nascimento , email, rua, cep, bairro, complemento, cidade, estado, telefone);
+				
+				
 				System.out.println(cliente.toString());
 				
-				clienteDAOJDBC.save(cliente);
+				int codCliente = clienteDAOJDBC.save(cliente);
+				cliente.setCodCliente(codCliente);
+				
 				Main.clientes.add(cliente);
 				
 				onCancel();
@@ -172,14 +182,23 @@ public class TelaCadastroClientesController implements Initializable {
 			
 				
 			} catch (Exception e) {
-				Alerts.showAlert("Ocorreu um erro inesperado", e.getMessage(), AlertType.ERROR);
+				Alerts.showAlert("Ocorreu um erro inesperado", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.ERROR);
 				
 			}
 			
 		}
+		}catch (Exception e) {
+			Alerts.showAlert("Valores errados", "Há valores errados, \n confira se você não digitou letras \n no lugar de números e vice versa", AlertType.INFORMATION);
+
+		}
+			
 	}
 	
 	public void onCancel() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		TelaInicialController tic = new TelaInicialController();
 		tic.openGUI();
 	

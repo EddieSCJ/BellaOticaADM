@@ -24,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import model.dao.ClienteDAOJDBC;
 import model.dao.DaoFactory;
@@ -37,11 +38,19 @@ import model.utils.MaskFieldUtil;
 
 public class TelaVerClienteController implements Initializable {
 
+	
+	
 		@FXML
 		private Pane TelaCadastroPane;
 
 		@FXML
-		private TextField searchField;
+		private TextField nosSearch;
+		
+		@FXML
+		private TextField vendedorSearch;
+		
+		@FXML
+		private TextField dataSearch;
 		
 		@FXML
 		private TextField nomeDoCliente;
@@ -120,12 +129,15 @@ public class TelaVerClienteController implements Initializable {
 			    TableRow<OS> row = new TableRow<>();
 			    row.setOnMouseClicked(event -> {
 			        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+			        	String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+			    		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+			    		clip.play();
+			    		
 			            OS rowData = row.getItem();
 			            TelaVisualizarVendaController tvvc = new TelaVisualizarVendaController();
 			            TelaListarVendaController.id = rowData.getCodos();
 			            
 			          
-//			            System.out.println(rowData.getCodos());
 			            tvvc.openGUI(rowData.getCodos());
 			        }
 			    });
@@ -163,6 +175,12 @@ public class TelaVerClienteController implements Initializable {
 			dataColumn.setCellValueFactory(new PropertyValueFactory<>("dataAtual"));
 			
 			tbviewOS.setItems(OSList());	
+			
+			if(tbviewOS.getItems().isEmpty()) {
+				tbviewOS.setEditable(false);
+			}else {
+				tbviewOS.setEditable(true);
+			}
 		}
 
 		
@@ -222,6 +240,11 @@ public class TelaVerClienteController implements Initializable {
 		}
 
 		public void onAtualizar(){
+			String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+			AudioClip clip = clip = new AudioClip(AUDIO_URL);
+			clip.play();
+			
+			try {
 			boolean achou = false;
 			for (int i = 0; i < Main.clientes.size(); i++) {
 				if(Main.clientes.get(i).getCPF().equalsIgnoreCase(cpfDoCliente.getText()) && Main.clientes.get(i).getCPF().equalsIgnoreCase(cpfValido)) {
@@ -254,34 +277,51 @@ public class TelaVerClienteController implements Initializable {
 					String estado = estadoDoCliente.getText();
 					String complemento = complementoDoCliente.getText();
 					
-					Cliente cliente = new Cliente(nome, cPF, new SimpleDateFormat("dd/MM/yyyy").format(new Date()), email, rua, cep, bairro, complemento, cidade, estado, telefone);
+					Cliente cliente = new Cliente(nome, cPF, nascimento, email, rua, cep, bairro, complemento, cidade, estado, telefone);
 					System.out.println(cliente.toString());
 					
 					cliente.setCodCliente(TelaListaClientesController.id);
 					
 					clienteDAOJDBC.update(cliente);
 					
-					onSair();
+
+					for (int i = 0; i < Main.clientes.size(); i++) {
+						if(Main.clientes.get(i).getCodCliente() == cliente.getCodCliente()) {
+							Main.os.remove(i);
+						}
+					}
+					
+					Main.clientes.add(cliente);
+					
+					
+					TelaVerClienteController tvcc = new TelaVerClienteController();
+					tvcc.openGUI(cliente.getCodCliente());
+					
+					Stage stage = (Stage) nascimentoTF.getScene().getWindow();
+					stage.close();
 					
 					Alerts.showAlert("Sucesso", "Cadastro atualizado com sucesso", AlertType.INFORMATION);
 					
 				
 					
 				} catch (Exception e) {
-					Alerts.showAlert("Ocorreu um erro inesperado", e.getMessage(), AlertType.ERROR);
-					
+					Alerts.showAlert("Deu ruim", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.INFORMATION);
+
 				}
 				
 			}
-		}
-		
-		public void onSearch() {
+			}catch (Exception e) {
+				Alerts.showAlert("Valores errados", "Há valores errados, \n confira se você não digitou letras \n no lugar de números e vice versa", AlertType.INFORMATION);
 
-			tbviewOS.setItems(specificOSList(searchField.getText()));
+			}
+				
 		}
 		
 		public void onSair() {
-	
+			String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+			AudioClip clip = clip = new AudioClip(AUDIO_URL);
+			clip.play();
+			
 			TelaListaClientesController tlcc = new TelaListaClientesController();
 			tlcc.openGUI();
 			
@@ -289,8 +329,80 @@ public class TelaVerClienteController implements Initializable {
 			stage.close();
 		}
 		
+		public ObservableList<OS> specificDataOSList(String content){
+			ObservableList<OS> osList = FXCollections.observableArrayList();
+			
+				for (OS os1 : Main.os) {
+					if(os1.getDataAtual().contains(content)) {
+						osList.add(os1);
+					}
+				}
+
+			return osList;
+			
+		}
+
+		public ObservableList<OS> specificNOSList(String content){
+			ObservableList<OS> osList = FXCollections.observableArrayList();
+			
+				for (OS os1 : Main.os) {
+					if(os1.getCodos().toString().contains(content)) {
+						osList.add(os1);
+					}
+				}
+
+			return osList;
+			
+		}
+		
+		public ObservableList<OS> specificVendedorOSList(String content){
+			ObservableList<OS> osList = FXCollections.observableArrayList();
+			
+				for (OS os1 : Main.os) {
+					if(os1.getNomeVendedor().contains(content)) {
+						osList.add(os1);
+					}
+				}
+
+			return osList;
+		}
+		
+		public void onSearchNOS() {
+
+			tbviewOS.setItems(specificNOSList(nosSearch.getText()));
+		}
+		
+		public void onSearchData() {
+
+			tbviewOS.setItems(specificDataOSList(dataSearch.getText()));
+		}
+		
+		
+		public void onSearchVendedor() {
+
+			tbviewOS.setItems(specificVendedorOSList(vendedorSearch.getText()));
+		}
+		
+		
 		public void onDelete() {
+			String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+			AudioClip clip = clip = new AudioClip(AUDIO_URL);
+			clip.play();
+			
+			String clienteNome = " Ninguém";
 			clienteDAOJDBC.delete(TelaListaClientesController.id);
+			for (int i = 0; i < Main.clientes.size(); i++) {
+				if(Main.clientes.get(i).getCodCliente() == TelaListaClientesController.id) {
+					clienteNome = Main.clientes.get(i).getName();
+					Main.os.remove(i);
+				}
+			}
+			
+			onSair();
+			
+			Alerts.showAlert("Cliente deletado", "VOCÊ DELETOU "+clienteNome
+					, AlertType.INFORMATION);
+			
 		}
 		
 }

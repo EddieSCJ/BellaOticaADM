@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -22,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import model.dao.ClienteDAOJDBC;
 import model.dao.OsDAOJDBC;
@@ -46,7 +48,10 @@ public class TelaCadastrarVendaController implements Initializable {
 	private TableColumn<Cliente, String> cpfColumn;
 	
 	@FXML 
-	private TextField searchFieldTF;
+	private TextField searchFieldCPFTF;
+	
+	@FXML 
+	private TextField searchFieldNameTF;
 	
 	@FXML 
 	private TextField nomeDoCliente;
@@ -74,6 +79,12 @@ public class TelaCadastrarVendaController implements Initializable {
 	
 	@FXML 
 	private DatePicker dpDataEntrega;
+	
+	@FXML 
+	private TextField obsTF;
+	
+	@FXML 
+	private TextField adicaoTF;
 	
 	@FXML 
 	private TextField dataAtual;
@@ -147,8 +158,22 @@ public class TelaCadastrarVendaController implements Initializable {
 	
 	
 	@FXML
-	private CheckBox cartao;
+	private CheckBox visa;
 
+	@FXML
+	private CheckBox hiper;
+
+	@FXML
+	private CheckBox banese;
+
+	@FXML
+	private CheckBox elo;
+
+	@FXML
+	private CheckBox master;
+
+	
+	
 	@FXML
 	private CheckBox dinheiro;
 
@@ -212,25 +237,30 @@ public class TelaCadastrarVendaController implements Initializable {
 	
 	
 	public void onSave() throws ParseException {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
+		try {
 		if(cpfDoCliente.getText().isEmpty() || nomeDoCliente.getText().isEmpty() || tipoArmacao.getText().isEmpty()
-			|| tipoLente.getText().isEmpty() || nomeVendedor.getText().isEmpty() || total.getText().isEmpty()
-			|| sinal.getText().isEmpty()) {
+				|| tipoLente.getText().isEmpty() || nomeVendedor.getText().isEmpty() || total.getText().isEmpty()
+				|| sinal.getText().isEmpty() || dataAtual.getText().isEmpty() || dataEntrega.getText().isEmpty()) {
 			Alerts.showAlert("Preencha todos campos corretamente", "Selecione um cliente e preencha todos os campos com asterisco", AlertType.INFORMATION);
 		} else {
 			OS os = new OS();
-			os.setCartao(cartao.isSelected());
+			os.setVisa(visa.isSelected());
+			os.setElo(elo.isSelected());
+
+			os.setHiper(hiper.isSelected());
+
+			os.setMaster(master.isSelected());
+
+			os.setBanese(banese.isSelected());
+
 			os.setCliente(cliente);
-			os.setDataAtual(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+			os.setDataAtual(dataAtual.getText());
+			os.setDataEntrega(dataEntrega.getText());
 			
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-			
-			String dataEntregaString = dpDataEntrega.getValue().toString();	
-			Date date1 = sdf1.parse(dataEntregaString);
-			
-			dataEntrega.setText(sdf.format(date1));
-			
-			os.setDataEntrega(sdf.format(date1));
 			os.setDinheiro(dinheiro.isSelected());
 			os.setEntregue(entregue.isSelected());
 			os.setLongeODCIL(Double.parseDouble(longeODCIL.getText()));
@@ -259,9 +289,12 @@ public class TelaCadastrarVendaController implements Initializable {
 			os.setTipoArmacao(tipoArmacao.getText());
 			os.setTipoLente(tipoLente.getText());
 			os.setTotalDaVenda(Double.parseDouble(total.getText()));
+			os.setAdicao(adicaoTF.getText());
+			os.setObs(obsTF.getText());
 			
 			try{
-			osDAOJDBC.save(os);
+			int codos = osDAOJDBC.save(os);
+			os.setCodos(codos);
 			
 			Main.os.add(os);
 			
@@ -269,10 +302,14 @@ public class TelaCadastrarVendaController implements Initializable {
 			
 			Alerts.showAlert("Sucesso", "Cadastro efetuado com sucesso", AlertType.INFORMATION);
 			}catch (Exception e) {
-				Alerts.showAlert("Deu ruim", e.getMessage(), AlertType.INFORMATION);
+				Alerts.showAlert("Deu ruim", "Ligue para (79) 998968393 \n para reportar o erro", AlertType.INFORMATION);
 			}
 		}
-		
+		}catch (Exception e) {
+			Alerts.showAlert("Valores errados", "Há valores errados, \n confira se você não digitou letras \n no lugar de números e vice versa", AlertType.INFORMATION);
+
+		}
+			
 	}
 	
 
@@ -298,6 +335,22 @@ public class TelaCadastrarVendaController implements Initializable {
 		pertoOEEIX.setText("0");;
 		pertoOEESF.setText("0");;
 		
+		dpDataAtual.setValue(LocalDate.now());
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+		String dataEntregaString = dpDataAtual.getValue().toString();	
+		Date date1;
+		
+			date1 = sdf1.parse(dataEntregaString);
+			dataAtual.setText(sdf.format(date1));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));		
 		cpfColumn.setCellValueFactory(new PropertyValueFactory<>("CPF"));
@@ -309,6 +362,10 @@ public class TelaCadastrarVendaController implements Initializable {
 		    row.setOnMouseClicked(event -> {
 		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
 		            Cliente rowData = row.getItem();
+		            String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		    		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		    		clip.play();
+		    		
 		            TelaVerClienteController tvcc = new TelaVerClienteController();
 		            TelaListaClientesController.id = rowData.getCodCliente();
 		            
@@ -318,6 +375,12 @@ public class TelaCadastrarVendaController implements Initializable {
 		    });
 		    return row ;
 		});
+		
+		if(tbViewCliente.getItems().isEmpty()) {
+			tbViewCliente.setEditable(false);
+		}else {
+			tbViewCliente.setEditable(true);
+		}
 		
 	}
 	
@@ -332,7 +395,7 @@ public class TelaCadastrarVendaController implements Initializable {
 		
 	}
 	
-	public ObservableList<Cliente> specificClientList(String content){
+	public ObservableList<Cliente> specificClientListName(String content){
 		ObservableList<Cliente> clientList = FXCollections.observableArrayList();
 		
 			for (Cliente cliente : Main.clientes) {
@@ -345,7 +408,24 @@ public class TelaCadastrarVendaController implements Initializable {
 		
 	}
 	
+	public ObservableList<Cliente> specificClientListCPF(String content){
+		ObservableList<Cliente> clientList = FXCollections.observableArrayList();
+		
+			for (Cliente cliente : Main.clientes) {
+				if(cliente.getCPF().contains(content)) {
+					clientList.add(cliente);
+				}
+			}
+
+		return clientList;
+		
+	}
+	
 	public void onCancel() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		TelaInicialController tic = new TelaInicialController();
 		tic.openGUI();
 	
@@ -353,11 +433,19 @@ public class TelaCadastrarVendaController implements Initializable {
 		stage.close();
 	}
 	
-	public void onSearch() {
-		tbViewCliente.setItems(specificClientList(searchFieldTF.getText()));
+	public void onSearchByName() {
+		tbViewCliente.setItems(specificClientListName(searchFieldNameTF.getText()));
 	}
 
+	public void onSearchByCPF() {
+		tbViewCliente.setItems(specificClientListCPF(searchFieldCPFTF.getText()));
+	}
+	
 	public void onMouseClicked() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		cliente = tbViewCliente.getSelectionModel().getSelectedItem();
 		System.out.println(cliente.getCodCliente());
 		cpfDoCliente.setText(cliente.getCPF());

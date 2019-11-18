@@ -16,11 +16,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
-import model.dao.ClienteDAOJDBC;
-import model.dao.DaoFactory;
 import model.entities.Cliente;
-import model.entities.OS;
 
 public class TelaListaClientesController implements Initializable {
 
@@ -37,15 +35,16 @@ public class TelaListaClientesController implements Initializable {
 	private TableColumn<Cliente, String> cpfColumn;
 	
 	@FXML
-	private TextField searchField;
+	private TextField searchName;
+	
+	@FXML
+	private TextField searchCPF;
 	
 	private Stage primaryStage = new Stage();
 	
 	private Scene myScene;
 	
 	public static int id;
-	
-	ClienteDAOJDBC clienteDAOJDBC = DaoFactory.createClienteDaojdbc();
 	
 	public void openGUI() {
 		try {
@@ -81,6 +80,10 @@ public class TelaListaClientesController implements Initializable {
 		tbViewCliente.setRowFactory( tv -> {
 		    TableRow<Cliente> row = new TableRow<>();
 		    row.setOnMouseClicked(event -> {
+		    	String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+				AudioClip clip = clip = new AudioClip(AUDIO_URL);
+				clip.play();
+				
 		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
 		            Cliente rowData = row.getItem();
 		            TelaVerClienteController tvcc = new TelaVerClienteController();
@@ -100,6 +103,11 @@ public class TelaListaClientesController implements Initializable {
 	
 		tbViewCliente.setItems(clientList());
 		
+		if(tbViewCliente.getItems().isEmpty()) {
+			tbViewCliente.setEditable(false);
+		}else {
+			tbViewCliente.setEditable(true);
+		}
 	}
 	
 	public ObservableList<Cliente> clientList(){
@@ -113,7 +121,21 @@ public class TelaListaClientesController implements Initializable {
 		
 	}
 	
-	public ObservableList<Cliente> specificClientList(String content){
+	public ObservableList<Cliente> specificCPFList(String content){
+		ObservableList<Cliente> clientList = FXCollections.observableArrayList();
+		
+			for (Cliente cliente : Main.clientes) {
+				if(cliente.getCPF().contains(content)) {
+					clientList.add(cliente);
+				}
+			}
+
+		return clientList;
+		
+	}
+	
+	
+	public ObservableList<Cliente> specificNameList(String content){
 		ObservableList<Cliente> clientList = FXCollections.observableArrayList();
 		
 			for (Cliente cliente : Main.clientes) {
@@ -126,7 +148,12 @@ public class TelaListaClientesController implements Initializable {
 		
 	}
 	
+	
 	public void onCancel() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		TelaInicialController tic = new TelaInicialController();
 		tic.openGUI();
 	
@@ -134,11 +161,15 @@ public class TelaListaClientesController implements Initializable {
 		stage.close();
 	}
 	
-	public void onSearch() {
+	public void onSearchName() {
 
-		tbViewCliente.setItems(specificClientList(searchField.getText()));
+		tbViewCliente.setItems(specificNameList(searchName.getText()));
 	}
 
-	
+
+	public void onSearchCPF() {
+
+		tbViewCliente.setItems(specificCPFList(searchCPF.getText()));
+	}
 	
 }

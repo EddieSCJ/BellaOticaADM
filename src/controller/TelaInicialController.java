@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import model.dao.ClienteDAOJDBC;
 import model.dao.OsDAOJDBC;
@@ -52,6 +53,10 @@ public class TelaInicialController implements Initializable{
 	
 	
 	public  void onAbrirTelaDeCadastro() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		
 		TelaCadastroClientesController tcc = new TelaCadastroClientesController();
 		tcc.openGUI();
@@ -63,6 +68,10 @@ public class TelaInicialController implements Initializable{
 	}
 	
 	public  void onAbrirTelaDeVenda() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		TelaCadastrarVendaController tcv = new TelaCadastrarVendaController();
 		tcv.openGUI();
 	
@@ -71,6 +80,9 @@ public class TelaInicialController implements Initializable{
 		}
 	
 	public void onAbrirListaDeClientes() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
 		
 		TelaListaClientesController tlc = new TelaListaClientesController();
 		tlc.openGUI();
@@ -80,6 +92,10 @@ public class TelaInicialController implements Initializable{
 	}
 	
 	public  void onAbrirListaDeVendas() {
+		String AUDIO_URL = this.getClass().getClassLoader().getResource("resources/click.wav").toString();
+		AudioClip clip = clip = new AudioClip(AUDIO_URL);
+		clip.play();
+		
 		TelaListarVendaController tlvc = new TelaListarVendaController();
 		tlvc.openGUI();
 		
@@ -91,11 +107,6 @@ public class TelaInicialController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		ClienteDAOJDBC clienteDAOJDBC = new ClienteDAOJDBC();	
-		OsDAOJDBC osDAOJDBC = new OsDAOJDBC();
-
-		Main.os = osDAOJDBC.findAll();
-		Main.clientes = clienteDAOJDBC.findAll();
-	}
+			}
 	
 }

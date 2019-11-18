@@ -7,43 +7,59 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Pane fx:id="TelaCadastroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="702.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaVerClienteController">
+<Pane fx:id="TelaCadastroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="702.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaVerClienteController">
    <children>
       <Label layoutX="14.0" layoutY="30.0" style="-fx-font-weight: bold;" text="Dados do cliente" textFill="#003d57">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="nomeDoCliente" layoutX="14.0" layoutY="64.0" prefHeight="29.0" prefWidth="381.0" promptText="Nome do cliente *" style="-fx-background-radius: 100;" />
-      <TextField fx:id="cpfDoCliente" layoutX="415.0" layoutY="64.0" prefHeight="29.0" prefWidth="271.0" promptText="CPF do cliente *" style="-fx-background-radius: 100;" />
-      <TextField fx:id="ruaDoCliente" layoutX="14.0" layoutY="200.0" prefHeight="29.0" prefWidth="257.0" promptText="Rua" style="-fx-background-radius: 100;" />
-      <TextField fx:id="telefoneDoCliente" layoutX="14.0" layoutY="107.0" prefHeight="29.0" prefWidth="216.0" promptText="Telefone 1" style="-fx-background-radius: 100;" />
-      <TextField fx:id="bairroDoCliente" layoutX="277.0" layoutY="200.0" prefHeight="29.0" prefWidth="231.0" promptText="Bairro" style="-fx-background-radius: 100;" />
-      <TextField fx:id="complementoDoCliente" layoutX="14.0" layoutY="239.0" prefHeight="29.0" prefWidth="257.0" promptText="Complemento" style="-fx-background-radius: 100;" />
-      <TextField fx:id="cepDoCliente" layoutX="515.0" layoutY="200.0" prefHeight="29.0" prefWidth="171.0" promptText="CEP" style="-fx-background-radius: 100;" />
-      <Label layoutX="14.0" layoutY="168.0" style="-fx-font-weight: bold;" text="Endereço:" textFill="#003d57" />
-      <TextField fx:id="emailDoCliente" layoutX="243.0" layoutY="107.0" prefHeight="29.0" prefWidth="216.0" promptText="Email" style="-fx-background-radius: 100;" />
-      <Button layoutX="554.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#onAtualizar" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #00bfa3; -fx-font-weight: bold; -fx-background-radius: 100;" text="Atualizar" textFill="WHITE" />
+      <TextField fx:id="nomeDoCliente" layoutX="9.0" layoutY="79.0" prefHeight="29.0" prefWidth="381.0" promptText="Nome do cliente *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="cpfDoCliente" layoutX="410.0" layoutY="79.0" prefHeight="29.0" prefWidth="271.0" promptText="CPF do cliente *" style="-fx-background-radius: 100;" />
+      <TextField fx:id="ruaDoCliente" layoutX="9.0" layoutY="256.0" prefHeight="29.0" prefWidth="263.0" promptText="Rua" style="-fx-background-radius: 100;" />
+      <TextField fx:id="telefoneDoCliente" layoutX="8.0" layoutY="151.0" prefHeight="29.0" prefWidth="216.0" promptText="Telefone 1" style="-fx-background-radius: 100;" />
+      <TextField fx:id="bairroDoCliente" layoutX="278.0" layoutY="256.0" prefHeight="29.0" prefWidth="231.0" promptText="Bairro" style="-fx-background-radius: 100;" />
+      <TextField fx:id="complementoDoCliente" layoutX="10.0" layoutY="321.0" prefHeight="29.0" prefWidth="263.0" promptText="Complemento" style="-fx-background-radius: 100;" />
+      <TextField fx:id="cepDoCliente" layoutX="516.0" layoutY="256.0" prefHeight="29.0" prefWidth="171.0" promptText="CEP" style="-fx-background-radius: 100;" />
+      <Label layoutX="16.0" layoutY="208.0" style="-fx-font-weight: bold;" text="Endereço:" textFill="#003d57" />
+      <TextField fx:id="emailDoCliente" layoutX="237.0" layoutY="151.0" prefHeight="29.0" prefWidth="216.0" promptText="Email" style="-fx-background-radius: 100;" />
+      <Button layoutX="543.0" layoutY="629.0" mnemonicParsing="false" onMouseClicked="#onAtualizar" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #00bfa3; -fx-font-weight: bold; -fx-background-radius: 100;" text="Atualizar" textFill="WHITE" />
       <ImageView fitHeight="31.0" fitWidth="193.0" layoutX="609.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Desktop/951285e2-1cb2-4415-97b2-dd6509f82115.jpeg" />
+            <Image url="@../resources/951285e2-1cb2-4415-97b2-dd6509f82115.png" />
          </image>
       </ImageView>
-      <Button layoutX="19.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#onSair" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Sair" textFill="WHITE" />
-      <Label layoutX="14.0" layoutY="142.0" text="Os campos marcados com * são obrigatórios" textFill="#940000" wrapText="true" />
+      <Button layoutX="8.0" layoutY="629.0" mnemonicParsing="false" onMouseClicked="#onSair" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Sair" textFill="WHITE" />
+      <Label layoutX="16.0" layoutY="189.0" text="Os campos marcados com * são obrigatórios" textFill="#940000" wrapText="true" />
       <TextField editable="false" layoutY="64.0" prefHeight="5.0" prefWidth="1.0" style="-fx-opacity: 0;" />
-      <DatePicker fx:id="nascimentoDoCliente" editable="false" layoutX="493.0" layoutY="107.0" onAction="#onDataSelecionada" onMouseClicked="#onDataSelecionada" prefHeight="29.0" prefWidth="184.0" promptText="Nasceu em:" style="-fx-background-radius: 100; -fx-opacity: 100;" />
-      <TextField fx:id="cidadeDoCliente" layoutX="278.0" layoutY="239.0" prefHeight="29.0" prefWidth="275.0" promptText="Cidade" style="-fx-background-radius: 100;" />
-      <TextField fx:id="estadoDoCliente" layoutX="561.0" layoutY="239.0" prefHeight="29.0" prefWidth="124.0" promptText="Estado" style="-fx-background-radius: 100;" />
-      <TextField fx:id="nascimentoTF" editable="false" layoutX="471.0" layoutY="107.0" prefHeight="29.0" prefWidth="177.0" promptText="Nasceu em:" style="-fx-background-radius: 100;" />
-      <Button layoutX="289.0" layoutY="539.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="29.0" prefWidth="155.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Excluir" textFill="WHITE" />
-      <TableView fx:id="tbviewOS" layoutY="332.0" prefHeight="193.0" prefWidth="702.0" style="-fx-background-radius: 0; -fx-background-color: white;">
+      <DatePicker fx:id="nascimentoDoCliente" editable="false" layoutX="487.0" layoutY="151.0" onAction="#onDataSelecionada" onMouseClicked="#onDataSelecionada" prefHeight="29.0" prefWidth="184.0" promptText="Nasceu em:" style="-fx-background-radius: 100; -fx-opacity: 100;" />
+      <TextField fx:id="cidadeDoCliente" layoutX="280.0" layoutY="321.0" prefHeight="29.0" prefWidth="275.0" promptText="Cidade" style="-fx-background-radius: 100;" />
+      <TextField fx:id="estadoDoCliente" layoutX="563.0" layoutY="321.0" prefHeight="29.0" prefWidth="124.0" promptText="Estado" style="-fx-background-radius: 100;" />
+      <TextField fx:id="nascimentoTF" editable="false" layoutX="465.0" layoutY="151.0" prefHeight="29.0" prefWidth="177.0" promptText="Nasceu em:" style="-fx-background-radius: 100;" />
+      <Button layoutX="278.0" layoutY="629.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="29.0" prefWidth="155.0" style="-fx-background-color: #d61c2b; -fx-font-weight: bold; -fx-background-radius: 100;" text="Excluir" textFill="WHITE" />
+      <TableView fx:id="tbviewOS" layoutX="5.0" layoutY="415.0" prefHeight="193.0" prefWidth="702.0" style="-fx-background-radius: 0; -fx-background-color: white;">
          <columns>
             <TableColumn fx:id="nosColumn" editable="false" prefWidth="129.0" text="Número da OS" />
             <TableColumn fx:id="vendedorColumn" minWidth="0.0" prefWidth="338.0" text="Vendedor" />
             <TableColumn fx:id="dataColumn" prefWidth="230.0" text="Data" />
          </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="14.0" layoutY="291.0" onKeyTyped="#onSearch" prefHeight="29.0" prefWidth="458.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
+      <TextField fx:id="nosSearch" layoutX="8.0" layoutY="386.0" onKeyTyped="#onSearchNOS" prefHeight="29.0" prefWidth="116.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
+      <Label layoutX="467.0" layoutY="132.0" style="-fx-font-weight: bold;" text="Data de Nascimento:" textFill="#003d57" />
+      <Label layoutX="237.0" layoutY="132.0" style="-fx-font-weight: bold;" text="Email:" textFill="#003d57" />
+      <Label layoutX="12.0" layoutY="132.0" style="-fx-font-weight: bold;" text="Telefone (DDD + Número)" textFill="#003d57" />
+      <Label layoutX="8.0" layoutY="64.0" style="-fx-font-weight: bold;" text="Nome Completo:" textFill="#003d57" />
+      <Label layoutX="410.0" layoutY="64.0" style="-fx-font-weight: bold;" text="CPF (Apenas Números):" textFill="#003d57" />
+      <Label layoutX="565.0" layoutY="302.0" style="-fx-font-weight: bold;" text="Estado (Ex: SE):" textFill="#003d57" />
+      <Label layoutX="284.0" layoutY="302.0" style="-fx-font-weight: bold;" text="Cidade" textFill="#003d57" />
+      <Label layoutX="10.0" layoutY="302.0" style="-fx-font-weight: bold;" text="Complemento" textFill="#003d57" />
+      <Label layoutX="516.0" layoutY="238.0" style="-fx-font-weight: bold;" text="CEP (Apenas Números):" textFill="#003d57" />
+      <Label layoutX="280.0" layoutY="238.0" style="-fx-font-weight: bold;" text="Bairro:" textFill="#003d57" />
+      <Label layoutX="12.0" layoutY="238.0" style="-fx-font-weight: bold;" text="Rua" textFill="#003d57" />
+      <TextField fx:id="vendedorSearch" layoutX="138.0" layoutY="386.0" onKeyTyped="#onSearchVendedor" prefHeight="29.0" prefWidth="329.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
+      <TextField fx:id="dataSearch" layoutX="478.0" layoutY="386.0" onKeyTyped="#onSearchData" prefHeight="29.0" prefWidth="216.0" promptText="Digite aqui a data da OS para localizá-la" style="-fx-background-radius: 100;" />
+      <Label layoutX="8.0" layoutY="368.0" style="-fx-font-weight: bold;" text="N° OS:" textFill="#003d57" />
+      <Label layoutX="144.0" layoutY="368.0" style="-fx-font-weight: bold;" text="Nome do vendedor:" textFill="#003d57" />
+      <Label layoutX="478.0" layoutY="368.0" style="-fx-font-weight: bold;" text="Data:" textFill="#003d57" />
    </children>
 </Pane>

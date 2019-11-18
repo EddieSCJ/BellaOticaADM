@@ -60,7 +60,7 @@ public class DB {
 		
 		try {
 			dbProperties = new Properties();
-			dbProperties.load(this.getClass().getResourceAsStream("db.properties"));
+			dbProperties.load(this.getClass().getResourceAsStream("dbOn.properties"));
 
 			return dbProperties;
 		
