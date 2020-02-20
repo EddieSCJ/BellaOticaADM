@@ -11,4 +11,6 @@ Esse foi um dos primeiros sistemas que eu desenvolvi após estudar banco de dado
 
 Como podem ver, não há muitas ferramentas neste projeto, devido ao nível iniciante em que eu estava. Existiu também uma tentativa de implementação do padrão MVC, que na época eu estava começando a estudar, o projeto está bem organizado, então é só baixar e rodar.
 
-OBS: JAVA 8.
+Suponho que ao você ler isso, já há tempo de eu ter feito outros projetos, com mais ferramentas e frameworks, como o próximo projeto a API de pedidos.
+
+OBS: JAVA 8, boa parte do projeto está no branch Ed.
